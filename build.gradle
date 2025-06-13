@@ -28,7 +28,7 @@ application {
     mainClass = 'dev.kkarrasmil80.gestoritv.HelloApplication'
 }
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 javafx {
