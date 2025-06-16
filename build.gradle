@@ -106,7 +106,12 @@ jacocoTestReport {
             fileTree(dir: it, exclude: [
                     "**/models/**",
                     "**/exceptions/**",
-                    "**/*Main*.*"
+                    "**/*Main*.*",
+                    "**/*error/**",
+                    "**/*mapper/**",
+                    "**/*di/**",
+                    "**/config/**",
+                    "**/utils/**"
             ])
         }))
     }
