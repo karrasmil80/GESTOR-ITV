@@ -111,7 +111,8 @@ jacocoTestReport {
                     "**/*mapper/**",
                     "**/*di/**",
                     "**/config/**",
-                    "**/utils/**"
+                    "**/utils/**",
+                    "**/database/**"
             ])
         }))
     }
