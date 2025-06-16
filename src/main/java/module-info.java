@@ -25,6 +25,7 @@ module dev.kkarrasmil80.gestoritv {
 
     //Cache
     requires com.github.benmanes.caffeine;
+    requires kotlin.result.jvm;
 
 
     //App
