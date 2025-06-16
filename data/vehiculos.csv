@@ -1,0 +1,11 @@
+id,matricula,marca,modelo,anio,tipo,consumo,cilindrada,capacidad
+1,1234-ABC,Tesla,Model S,2022,Electrico,18 kWh/100km,,
+2,5678-DEF,Yamaha,MT-07,2020,Motor,,689,
+3,9012-GHI,Mercedes,Citaro,2018,Publico,,,50
+4,3456-JKL,Nissan,Leaf,2023,Electrico,15 kWh/100km,,
+5,7890-MNO,Ford,Transit,2019,Publico,,,20
+6,1122-PQR,Kawasaki,Ninja 400,2021,Motor,,399,
+7,3344-STU,Renault,ZOE,2021,Electrico,17.2 kWh/100km,,
+8,5566-VWX,Ducati,Monster 821,2019,Motor,,821,
+9,7788-YZA,Scania,Citywide LF,2017,Publico,,,70
+10,9900-BCD,BMW,i3,2020,Electrico,13.1 kWh/100km,,
