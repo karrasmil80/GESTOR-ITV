@@ -4,7 +4,7 @@ package dev.kkarrasmil80.gestoritv.vehiculo.dao
  *
  */
 
-open class VehiculoEntity(
+data class VehiculoEntity(
     val id: Int,
     val matricula: String,
     val marca: String,
