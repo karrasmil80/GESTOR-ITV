@@ -3,25 +3,19 @@ package vehiculo.repositories
 import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoDao
 import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoEntity
 import dev.kkarrasmil80.gestoritv.vehiculo.mapper.toModel
-import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoElectrico
-import dev.kkarrasmil80.gestoritv.vehiculo.repositories.VehiculoRepository
 import dev.kkarrasmil80.gestoritv.vehiculo.repositories.VehiculoRepositoryImpl
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.junit.jupiter.MockitoExtension
-import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.whenever
 
 @ExtendWith(MockitoExtension::class)
-class VehiculoRepositoryImpl {
+class VehiculoRepositoryImplTest {
 
     private val dao: VehiculoDao = mock()
     private val repository = VehiculoRepositoryImpl(dao)
