@@ -10,5 +10,6 @@ class VehiculoMotor(
     marca: String,
     modelo: String,
     anio: Int,
+    tipo : String,
     val cilindrada : Int
-) : Vehiculo(id, matricula, marca, modelo, anio)
+) : Vehiculo(id, matricula, marca, modelo, anio, tipo)
