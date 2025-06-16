@@ -9,13 +9,13 @@ import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoPublico
 fun VehiculoEntity.toModel(): Vehiculo {
     return when (tipo.lowercase()) {
         "electrico" -> VehiculoElectrico(
-            id, matricula, marca, modelo, anio, consumo ?: throw IllegalArgumentException("Falta consumo para eléctrico")
+            id, matricula, marca, modelo, anio, tipo, consumo ?: throw IllegalArgumentException("Falta consumo para eléctrico")
         )
         "motor" -> VehiculoMotor(
-            id, matricula, marca, modelo, anio, cilindrada ?: throw IllegalArgumentException("Falta cilindrada para motor")
+            id, matricula, marca, modelo, anio, tipo, cilindrada ?: throw IllegalArgumentException("Falta cilindrada para motor")
         )
         "publico" -> VehiculoPublico(
-            id, matricula, marca, modelo, anio, capacidad ?: throw IllegalArgumentException("Falta capacidad para público")
+            id, matricula, marca, modelo, anio, tipo, capacidad ?: throw IllegalArgumentException("Falta capacidad para público")
         )
         else -> throw IllegalArgumentException("Tipo de vehículo no reconocido: $tipo")
     }
