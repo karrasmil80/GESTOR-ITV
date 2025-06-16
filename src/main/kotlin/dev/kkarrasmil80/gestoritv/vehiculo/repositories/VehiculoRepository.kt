@@ -1,6 +1,4 @@
 package dev.kkarrasmil80.gestoritv.vehiculo.repositories
-
-import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoEntity
 import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 
 interface VehiculoRepository {
