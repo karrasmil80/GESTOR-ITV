@@ -1,8 +1,7 @@
 package vehiculo.validator
 
-import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoEntity
-import dev.kkarrasmil80.gestoritv.vehiculo.mapper.toModel
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoElectrico
+import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoElectricoValidator
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoValidator
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -10,9 +9,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class VehiculoValidatorTest {
-
-    private val validator = VehiculoValidator()
+class VehiculoElectricoValidatorTest {
+    private val validator = VehiculoElectricoValidator()
 
     private val vehiculo = VehiculoElectrico(
         id = 100,
@@ -23,7 +21,7 @@ class VehiculoValidatorTest {
         tipo = "electrico",
         consumo = "15kWh/100km",
 
-    )
+        )
 
     @Nested
     @DisplayName("Casos correctos")
@@ -169,6 +167,25 @@ class VehiculoValidatorTest {
             val result = validator.validate(vehiculoInvalid)
             assertTrue(result.isErr)
             assertEquals("El tipo no puede estar en blanco", result.error.message)
+        }
+
+        @Test
+        @DisplayName("el consumo no puede estar vacio")
+        fun consumoVacio() {
+            val vehiculoInvalid = VehiculoElectrico(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                consumo = ""
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("El consumo no puede estar en blanco", result.error.message)
         }
     }
 }

@@ -1,28 +1,27 @@
 package vehiculo.validator
 
-import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoEntity
-import dev.kkarrasmil80.gestoritv.vehiculo.mapper.toModel
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoElectrico
-import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoValidator
+import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoPublico
+import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoElectricoValidator
+import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoPublicoValidator
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class VehiculoValidatorTest {
+class VehiculoPublicoValidatorTest {
 
-    private val validator = VehiculoValidator()
+    private val validator = VehiculoPublicoValidator()
 
-    private val vehiculo = VehiculoElectrico(
+    private val vehiculo = VehiculoPublico(
         id = 100,
         matricula = "1234-ZZZ",
         marca = "Tesla",
         modelo = "Model S",
         anio = 2022,
         tipo = "electrico",
-        consumo = "15kWh/100km",
-
+        capacidad = 1,
     )
 
     @Nested
@@ -48,14 +47,14 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("ID inválido")
         fun idInvalido() {
-            val vehiculoInvalid = VehiculoElectrico(
-                id = 0,
+            val vehiculoInvalid = VehiculoPublico(
+                id = -1,
                 matricula = "1234-ZZZ",
                 marca = "Tesla",
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -66,14 +65,14 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("Matrícula en blanco")
         fun matriculaBlanca() {
-            val vehiculoInvalid = VehiculoElectrico(
+            val vehiculoInvalid = VehiculoPublico(
                 id = 100,
                 matricula = "",
                 marca = "Tesla",
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -84,14 +83,14 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("Matrícula con formato incorrecto")
         fun matriculaFormatoIncorrecto() {
-            val vehiculoInvalid = VehiculoElectrico(
+            val vehiculoInvalid = VehiculoPublico(
                 id = 100,
-                matricula = "ZZZ999",
+                matricula = "1234ZZZ",
                 marca = "Tesla",
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -102,14 +101,14 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("Modelo vacío")
         fun modeloVacio() {
-            val vehiculoInvalid = VehiculoElectrico(
+            val vehiculoInvalid = VehiculoPublico(
                 id = 100,
                 matricula = "1234-ZZZ",
                 marca = "Tesla",
                 modelo = "",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -120,14 +119,14 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("Año superior a 2025")
         fun anioFuturo() {
-            val vehiculoInvalid = VehiculoElectrico(
+            val vehiculoInvalid = VehiculoPublico(
                 id = 100,
                 matricula = "1234-ZZZ",
                 marca = "Tesla",
                 modelo = "Model S",
-                anio = 2026,
+                anio = 2029,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -138,14 +137,14 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("Marca vacía")
         fun marcaVacia() {
-            val vehiculoInvalid = VehiculoElectrico(
+            val vehiculoInvalid = VehiculoPublico(
                 id = 100,
                 matricula = "1234-ZZZ",
                 marca = "",
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -156,19 +155,38 @@ class VehiculoValidatorTest {
         @Test
         @DisplayName("Tipo vacío")
         fun tipoVacio() {
-            val vehiculoInvalid = VehiculoElectrico(
+            val vehiculoInvalid = VehiculoPublico(
                 id = 100,
                 matricula = "1234-ZZZ",
                 marca = "Tesla",
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "",
-                consumo = "15kWh/100km"
+                capacidad = 1
             )
 
             val result = validator.validate(vehiculoInvalid)
             assertTrue(result.isErr)
             assertEquals("El tipo no puede estar en blanco", result.error.message)
+        }
+
+        @Test
+        @DisplayName("el consumo no puede estar vacio")
+        fun capacidadIgualACero() {
+            val vehiculoInvalid = VehiculoPublico(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                capacidad = 0
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("La capacidad no puede ser 0", result.error.message)
         }
     }
 }
