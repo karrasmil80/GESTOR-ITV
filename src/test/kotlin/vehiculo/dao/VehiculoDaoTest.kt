@@ -1,7 +1,7 @@
 package vehiculo.dao
 
 import dev.kkarrasmil80.gestoritv.database.JdbiManager
-import dev.kkarrasmil80.gestoritv.utils.provideVehiculoDao
+import dev.kkarrasmil80.gestoritv.vehiculo.utils.provideVehiculoDao
 import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoDao
 import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoEntity
 import org.junit.jupiter.api.*
