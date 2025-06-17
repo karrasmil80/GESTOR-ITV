@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS vehiculos;
+DROP TABLE IF EXISTS citas;
 
 CREATE TABLE vehiculos (
     id INT PRIMARY KEY,
@@ -10,4 +11,11 @@ CREATE TABLE vehiculos (
     consumo VARCHAR(20),
     cilindrada INT,
     capacidad INT
+);
+
+CREATE TABLE citas (
+    id INT PRIMARY KEY,
+    fechaCita DATE NOT NULL,
+    hora TIME NOT NULL,
+    vehiculoId INT NOT NULL
 );
