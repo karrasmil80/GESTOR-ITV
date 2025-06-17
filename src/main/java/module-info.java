@@ -36,4 +36,7 @@ module dev.kkarrasmil80.gestoritv {
     opens dev.kkarrasmil80.gestoritv.vehiculo.dao to org.jdbi.v3.core;
     exports dev.kkarrasmil80.gestoritv.vehiculo.dao to kotlin.reflect;
 
+    opens dev.kkarrasmil80.gestoritv.cita.dao to org.jdbi.v3.core;
+    exports dev.kkarrasmil80.gestoritv.cita.dao to kotlin.reflect;
+
 }
