@@ -1,4 +1,4 @@
-package dev.kkarrasmil80.gestoritv.utils
+package dev.kkarrasmil80.gestoritv.vehiculo.utils
 
 import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoDao
 import org.jdbi.v3.core.Jdbi
