@@ -6,7 +6,7 @@ import dev.kkarrasmil80.gestoritv.database.JdbiManager
 import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 import dev.kkarrasmil80.gestoritv.utils.provideCacheCaffeine
 import dev.kkarrasmil80.gestoritv.utils.provideDatabaseManager
-import dev.kkarrasmil80.gestoritv.utils.provideVehiculoDao
+import dev.kkarrasmil80.gestoritv.vehiculo.utils.provideVehiculoDao
 import org.jdbi.v3.core.Jdbi
 import org.koin.dsl.module
 import org.lighthousegames.logging.logging
