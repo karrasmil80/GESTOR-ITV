@@ -22,6 +22,9 @@ class VehiculoStorageCsvImplTest {
         anio = 2022,
         tipo = "electrico",
         consumo = "15kWh/100km",
+        neumaticos = true,
+        bateria = true,
+        frenos = true,
     )
 
     private val vehiculoPublico = VehiculoPublico(
@@ -31,7 +34,10 @@ class VehiculoStorageCsvImplTest {
         modelo = "Citaro",
         anio = 2018,
         tipo = "publico",
-        capacidad = 50
+        capacidad = 50,
+        neumaticos = true,
+        bateria = true,
+        frenos = true
     )
 
     private val vehiculoMotor = VehiculoMotor(
@@ -41,7 +47,11 @@ class VehiculoStorageCsvImplTest {
         modelo = "Model S",
         anio = 2022,
         tipo = "motor",
-        cilindrada = 3
+        cilindrada = 3,
+        aceite = 5,
+        neumaticos = true,
+        bateria = true,
+        frenos = true
     )
 
     private val tempFile = File("data_backup/vehiculos.csv")

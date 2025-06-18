@@ -9,13 +9,43 @@ import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoPublico
 fun VehiculoEntity.toModel(): Vehiculo {
     return when (tipo.lowercase()) {
         "electrico" -> VehiculoElectrico(
-            id, matricula, marca, modelo, anio, tipo, consumo ?: throw IllegalArgumentException("Falta consumo para eléctrico")
+            id = id,
+            matricula = matricula,
+            marca = marca,
+            modelo = modelo,
+            anio = anio,
+            tipo = tipo,
+            consumo = consumo!!,
+            neumaticos = neumaticos,
+            bateria = bateria,
+            frenos = frenos
         )
+
         "motor" -> VehiculoMotor(
-            id, matricula, marca, modelo, anio, tipo, cilindrada ?: throw IllegalArgumentException("Falta cilindrada para motor")
+            id = id,
+            matricula = matricula,
+            marca = marca,
+            modelo = modelo,
+            anio = anio,
+            tipo = tipo,
+            cilindrada = cilindrada!!,
+            aceite = aceite!!,
+            neumaticos = neumaticos,
+            bateria = bateria,
+            frenos = frenos
         )
+
         "publico" -> VehiculoPublico(
-            id, matricula, marca, modelo, anio, tipo, capacidad ?: throw IllegalArgumentException("Falta capacidad para público")
+            id = id,
+            matricula = matricula,
+            marca = marca,
+            modelo = modelo,
+            anio = anio,
+            tipo = tipo,
+            capacidad = capacidad!!,
+            neumaticos = neumaticos,
+            bateria = bateria,
+            frenos = frenos
         )
         else -> throw IllegalArgumentException("Tipo de vehículo no reconocido: $tipo")
     }
@@ -24,37 +54,49 @@ fun VehiculoEntity.toModel(): Vehiculo {
 fun Vehiculo.toEntity(): VehiculoEntity {
     return when (this) {
         is VehiculoElectrico -> VehiculoEntity(
-            id = this.id,
-            matricula = this.matricula,
-            marca = this.marca,
-            modelo = this.modelo,
-            anio = this.anio,
+            id = id,
+            matricula = matricula,
+            marca = marca,
+            modelo = modelo,
+            anio = anio,
             tipo = "electrico",
-            consumo = this.consumo,
+            consumo = consumo,
             cilindrada = null,
-            capacidad = null
+            capacidad = null,
+            neumaticos = neumaticos,
+            bateria = bateria,
+            frenos = frenos,
+            aceite = null
         )
         is VehiculoMotor -> VehiculoEntity(
-            id = this.id,
-            matricula = this.matricula,
-            marca = this.marca,
-            modelo = this.modelo,
-            anio = this.anio,
+            id = id,
+            matricula = matricula,
+            marca = marca,
+            modelo = modelo,
+            anio = anio,
             tipo = "motor",
             consumo = null,
-            cilindrada = this.cilindrada,
-            capacidad = null
+            cilindrada = cilindrada,
+            capacidad = null,
+            neumaticos = neumaticos,
+            bateria = bateria,
+            frenos = false,
+            aceite = aceite
         )
         is VehiculoPublico -> VehiculoEntity(
-            id = this.id,
-            matricula = this.matricula,
-            marca = this.marca,
-            modelo = this.modelo,
-            anio = this.anio,
+            id = id,
+            matricula = matricula,
+            marca = marca,
+            modelo = modelo,
+            anio = anio,
             tipo = "publico",
             consumo = null,
             cilindrada = null,
-            capacidad = this.capacidad
+            capacidad = capacidad,
+            neumaticos = neumaticos,
+            bateria = bateria,
+            frenos = frenos,
+            aceite = null
         )
         else -> throw IllegalArgumentException("Tipo de vehículo no soportado")
     }

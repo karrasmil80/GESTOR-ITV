@@ -22,6 +22,9 @@ class VehiculoPublicoValidatorTest {
         anio = 2022,
         tipo = "electrico",
         capacidad = 1,
+        neumaticos = true,
+        bateria = true,
+        frenos = true,
     )
 
     @Nested
@@ -54,7 +57,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -72,7 +78,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -90,7 +99,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -108,7 +120,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "",
                 anio = 2022,
                 tipo = "electrico",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -126,7 +141,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2029,
                 tipo = "electrico",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -144,7 +162,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -162,7 +183,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "",
-                capacidad = 1
+                capacidad = 1,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -180,7 +204,10 @@ class VehiculoPublicoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                capacidad = 0
+                capacidad = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)

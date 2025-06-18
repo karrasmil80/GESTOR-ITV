@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS vehiculos;
 DROP TABLE IF EXISTS citas;
 
@@ -10,12 +11,17 @@ CREATE TABLE vehiculos (
     tipo VARCHAR(20) NOT NULL,
     consumo VARCHAR(20),
     cilindrada INT,
-    capacidad INT
+    capacidad INT,
+    neumaticos BOOLEAN NOT NULL,
+    bateria BOOLEAN NOT NULL,
+    frenos BOOLEAN NOT NULL,
+    aceite INT
 );
 
 CREATE TABLE citas (
     id INT PRIMARY KEY,
     fechaCita DATE NOT NULL,
     hora TIME NOT NULL,
-    vehiculoId INT NOT NULL
+    vehiculoId INT NOT NULL,
+    FOREIGN KEY (vehiculoId) REFERENCES vehiculos(id) ON DELETE CASCADE
 );

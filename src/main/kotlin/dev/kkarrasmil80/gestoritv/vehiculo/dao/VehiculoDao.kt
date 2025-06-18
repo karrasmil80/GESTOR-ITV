@@ -33,10 +33,20 @@ interface VehiculoDao  {
      */
 
     @SqlUpdate("""
-    INSERT INTO vehiculos (id, matricula, marca, modelo, anio, tipo, consumo, cilindrada, capacidad)
-    VALUES (:id, :matricula, :marca, :modelo, :anio, :tipo, :consumo, :cilindrada, :capacidad)
+    INSERT INTO vehiculos (
+        id, matricula, marca, modelo, anio, tipo,
+        consumo, cilindrada, capacidad,
+        neumaticos, bateria, frenos, aceite
+    )
+    VALUES (
+        :id, :matricula, :marca, :modelo, :anio, :tipo,
+        :consumo, :cilindrada, :capacidad,
+        :neumaticos, :bateria, :frenos, :aceite
+    )
 """)
+    @GetGeneratedKeys
     fun insert(@BindBean vehiculo: VehiculoEntity): Int
+
 
 
 

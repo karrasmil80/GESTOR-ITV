@@ -23,6 +23,10 @@ class VehiculoDaoTest {
         consumo = "15kWh/100km",
         cilindrada = null,
         capacidad = null,
+        neumaticos = true,
+        bateria = true,
+        frenos = true,
+        aceite = 5,
     )
 
     @BeforeAll

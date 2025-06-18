@@ -41,6 +41,18 @@ class VehiculoPublicoValidator : Validator<VehiculoPublico, VehiculoError> {
             return Err(VehiculoError.VehiculoValidatorError("La capacidad no puede ser 0"))
         }
 
+        if (t.frenos == false) {
+            return Err(VehiculoError.VehiculoValidatorError("Los frenos no han pasado la prueba"))
+        }
+
+        if (t.bateria == false) {
+            return Err(VehiculoError.VehiculoValidatorError("La batería no ha pasado la prueba"))
+        }
+
+        if (t.neumaticos == false) {
+            return Err(VehiculoError.VehiculoValidatorError("Los neumaticos no han pasado la prueba"))
+        }
+
         return Ok(t)
     }
 }

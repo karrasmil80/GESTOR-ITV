@@ -1,4 +1,4 @@
-id,matricula,marca,modelo,anio,tipo,consumo,cilindrada,capacidad
-100,1234-ZZZ,Tesla,Model S,2022,electrico,15kWh/100km,,
-101,1234-ZZC,Mercedes,Citaro,2018,publico,,,50
-100,1234-ZZZ,Mercedes,Model S,2022,motor,,3,
+id,matricula,marca,modelo,anio,tipo,consumo,cilindrada,capacidad,neumaticos,bateria,frenos,aceite
+100,1234-ZZZ,Tesla,Model S,2022,electrico,15kWh/100km,,,true,true,true,
+101,1234-ZZC,Mercedes,Citaro,2018,publico,,,50,true,true,true,
+100,1234-ZZZ,Mercedes,Model S,2022,motor,,3,,true,true,true,5

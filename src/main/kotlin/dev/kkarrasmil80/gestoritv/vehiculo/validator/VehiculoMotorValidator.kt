@@ -40,6 +40,22 @@ class VehiculoMotorValidator : Validator<VehiculoMotor, VehiculoError> {
         if (t.cilindrada == 0) {
             return Err(VehiculoError.VehiculoValidatorError("La cilindrada no puede ser 0"))
         }
+        if (t.frenos == false) {
+            return Err(VehiculoError.VehiculoValidatorError("Los frenos no han pasado la prueba"))
+        }
+
+        if (t.bateria == false) {
+            return Err(VehiculoError.VehiculoValidatorError("La batería no ha pasado la prueba"))
+        }
+
+        if (t.neumaticos == false) {
+            return Err(VehiculoError.VehiculoValidatorError("Los neumaticos no han pasado la prueba"))
+        }
+
+        if (t.aceite <= 3) {
+            return Err(VehiculoError.VehiculoValidatorError("El aceite es menor del indicado, no han pasado la prueba"))
+        }
+
 
         return Ok(t)
     }

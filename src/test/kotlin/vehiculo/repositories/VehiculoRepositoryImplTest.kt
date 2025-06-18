@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.mock
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
 @ExtendWith(MockitoExtension::class)
@@ -30,6 +31,10 @@ class VehiculoRepositoryImplTest {
         consumo = "15kWh/100km",
         cilindrada = null,
         capacidad = null,
+        neumaticos = true,
+        bateria = true,
+        frenos = true,
+        aceite = 5,
     )
 
     @Nested
@@ -71,7 +76,7 @@ class VehiculoRepositoryImplTest {
     @DisplayName("Deberia de insertar correctamente un vehiculo")
     fun save() {
 
-        whenever(dao.insert(vehiculoEntity)).thenReturn(1)
+        whenever(dao.insert(any())).thenReturn(1)
 
         val toSave = repository.save(vehiculoEntity.toModel())
 

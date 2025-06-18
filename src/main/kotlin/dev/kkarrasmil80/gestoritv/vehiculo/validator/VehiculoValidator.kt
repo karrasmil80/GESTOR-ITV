@@ -38,6 +38,7 @@ class VehiculoValidator : Validator<Vehiculo, VehiculoError> {
             return Err(VehiculoError.VehiculoValidatorError("El tipo no puede estar en blanco"))
         }
 
+
         return Ok(t)
     }
 }

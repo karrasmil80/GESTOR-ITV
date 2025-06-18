@@ -22,7 +22,9 @@ class VehiculoValidatorTest {
         anio = 2022,
         tipo = "electrico",
         consumo = "15kWh/100km",
-
+        neumaticos = true,
+        bateria = true,
+        frenos = true,
     )
 
     @Nested
@@ -55,7 +57,10 @@ class VehiculoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -73,7 +78,10 @@ class VehiculoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -91,7 +99,10 @@ class VehiculoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -109,7 +120,10 @@ class VehiculoValidatorTest {
                 modelo = "",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -127,7 +141,10 @@ class VehiculoValidatorTest {
                 modelo = "Model S",
                 anio = 2026,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -145,7 +162,10 @@ class VehiculoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -163,7 +183,10 @@ class VehiculoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "",
-                consumo = "15kWh/100km"
+                consumo = "15kWh/100km",
+                neumaticos = true,
+                bateria = true,
+                frenos = true
             )
 
             val result = validator.validate(vehiculoInvalid)

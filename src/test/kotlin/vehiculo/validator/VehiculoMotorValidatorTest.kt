@@ -21,6 +21,10 @@ class VehiculoMotorValidatorTest {
         anio = 2022,
         tipo = "electrico",
         cilindrada = 1,
+        neumaticos = true,
+        bateria = true,
+        frenos = true,
+        aceite = 5
     )
 
     @Nested
@@ -53,7 +57,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
 
             )
 
@@ -72,7 +80,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -90,7 +102,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -108,7 +124,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "",
                 anio = 2022,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -126,7 +146,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2026,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -144,7 +168,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -162,7 +190,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)
@@ -180,7 +212,11 @@ class VehiculoMotorValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                cilindrada = 0
+                cilindrada = 0,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 5
             )
 
             val result = validator.validate(vehiculoInvalid)

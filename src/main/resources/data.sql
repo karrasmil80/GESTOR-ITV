@@ -1,11 +1,27 @@
 DELETE FROM vehiculos;
 DELETE FROM citas;
 
-INSERT INTO vehiculos (id, matricula, marca, modelo, anio, tipo, consumo, cilindrada, capacidad)
+INSERT INTO vehiculos (
+    id, matricula, marca, modelo, anio, tipo,
+    consumo, cilindrada, capacidad,
+    neumaticos, bateria, frenos, aceite
+)
 VALUES
-    (1, 'ABC123', 'Tesla', 'Model S', 2022, 'electrico', '15kWh/100km', NULL, NULL),
-    (2, 'DEF456', 'Renault', 'Clio', 2019, 'gasolina', '6.5L/100km', 1600, NULL),
-    (3, 'GHI789', 'Seat', 'Ibiza', 2021, 'diesel', '4.3L/100km', 1500, 5);
+    -- Vehículo eléctrico
+    (1, 'ABC123', 'Tesla', 'Model S', 2022, 'electrico',
+     '15kWh/100km', NULL, NULL,
+     TRUE, TRUE, TRUE, NULL),
+
+    -- Vehículo con motor gasolina
+    (2, 'DEF456', 'Renault', 'Clio', 2019, 'motor',
+     NULL, 1600, NULL,
+     TRUE, TRUE, FALSE, TRUE),
+
+    -- Vehículo público (diesel) con capacidad
+    (3, 'GHI789', 'Seat', 'Ibiza', 2021, 'publico',
+     NULL, NULL, 5,
+     TRUE, TRUE, TRUE, NULL);
+
 
 INSERT INTO citas (id, fechaCita, hora, vehiculoId)
 VALUES

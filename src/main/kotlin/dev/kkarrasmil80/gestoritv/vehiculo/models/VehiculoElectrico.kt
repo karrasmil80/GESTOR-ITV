@@ -11,5 +11,8 @@ class VehiculoElectrico(
     modelo: String,
     anio: Int,
     tipo : String,
-    val consumo : String
+    val consumo : String,
+    val neumaticos : Boolean,
+    val bateria : Boolean,
+    val frenos : Boolean
 ) : Vehiculo(id, matricula, marca, modelo, anio, tipo)
