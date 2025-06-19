@@ -224,5 +224,98 @@ class VehiculoMotorValidatorTest {
             assertTrue(result.isErr)
             assertEquals("La cilindrada no puede ser 0", result.error.message)
         }
+
+        @Test
+        @DisplayName("Deberia de dar un error por neumaticos invalidos")
+        fun neumaticosInvalidos() {
+            val vehiculoInvalid = VehiculoMotor(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                cilindrada = 3,
+                neumaticos = false,
+                bateria = true,
+                frenos = true,
+                aceite = 5
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("Los neumaticos no han pasado la prueba", result.error.message)
+        }
+
+        @Test
+        @DisplayName("Deberia de dar un error por bateria invalida")
+        fun bateriaInvalida() {
+            val vehiculoInvalid = VehiculoMotor(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                cilindrada = 3,
+                neumaticos = true,
+                bateria = false,
+                frenos = true,
+                aceite = 5
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("La batería no ha pasado la prueba", result.error.message)
+        }
+
+        @Test
+        @DisplayName("Los frenos deberian de ser invalidos")
+        fun frenosInvalidos() {
+            val vehiculoInvalid = VehiculoMotor(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                cilindrada = 3,
+                neumaticos = true,
+                bateria = true,
+                frenos = false,
+                aceite = 5
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("Los frenos no han pasado la prueba", result.error.message)
+        }
+
+        @Test
+        @DisplayName("El aceite no puede ser menos de 3 Litros")
+        fun aceiteInvalido() {
+            val vehiculoInvalid = VehiculoMotor(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                cilindrada = 2,
+                neumaticos = true,
+                bateria = true,
+                frenos = true,
+                aceite = 2
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("El aceite es menor del indicado, no han pasado la prueba", result.error.message)
+        }
+
     }
 }

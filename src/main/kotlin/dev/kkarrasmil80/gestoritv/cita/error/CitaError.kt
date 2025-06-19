@@ -6,7 +6,7 @@ import dev.kkarrasmil80.gestoritv.vehiculo.error.VehiculoError
  *
  */
 
-sealed class CitaError(message: String) {
+sealed class CitaError(val message: String) {
     class CitaServiceError(message: String) : CitaError(message)
     class CitaRepositoryError(message: String) : CitaError(message)
     class CitaIdNotFound(message: String) : CitaError(message)

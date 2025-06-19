@@ -45,7 +45,7 @@ class VehiculoElectricoValidator : Validator<VehiculoElectrico, VehiculoError> {
         }
 
         if (t.bateria == false) {
-            return Err(VehiculoError.VehiculoValidatorError("La batería no ha pasado la prueba"))
+            return Err(VehiculoError.VehiculoValidatorError("La bateria no ha pasado la prueba"))
         }
 
         if (t.neumaticos == false) {

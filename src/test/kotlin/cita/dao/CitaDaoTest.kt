@@ -4,7 +4,9 @@ import dev.kkarrasmil80.gestoritv.cita.dao.CitaDao
 import dev.kkarrasmil80.gestoritv.cita.dao.CitaEntity
 import dev.kkarrasmil80.gestoritv.cita.utils.provideCitaDao
 import dev.kkarrasmil80.gestoritv.database.JdbiManager
+import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoDao
 import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoEntity
+import dev.kkarrasmil80.gestoritv.vehiculo.mapper.toEntity
 import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoMotor
 import dev.kkarrasmil80.gestoritv.vehiculo.utils.provideVehiculoDao
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.Assertions.*
 class CitaDaoTest {
 
     private lateinit var dao: CitaDao
+    private lateinit var vehiculoDao: VehiculoDao
     private lateinit var jdbi : JdbiManager
 
     @BeforeAll
@@ -27,6 +30,7 @@ class CitaDaoTest {
             databaseLogger = false
         )
         dao = provideCitaDao(jdbi.jdbi)
+        vehiculoDao = provideVehiculoDao(jdbi.jdbi)
     }
 
     @BeforeEach
@@ -35,23 +39,27 @@ class CitaDaoTest {
         jdbi.executeSqlScriptFromResources("data.sql")
     }
 
-    /*
+
     private val vehiculo = VehiculoMotor(
-        id = 100,
+        id = 1,
         matricula = "ZZZ999",
         marca = "Tesla",
         modelo = "Model S",
         anio = 2022,
         tipo = "motor",
-        cilindrada = 1
+        cilindrada = 1,
+        aceite = 4,
+        neumaticos = true,
+        bateria = true,
+        frenos = true
     )
-     */
+
 
     private val cita = CitaEntity(
         id = 100,
         fechaCita = "2025-06-20",
         hora = "10:00:00",
-        vehiculoId = 999,
+        vehiculoId = 1,
     )
 
     @Nested
@@ -80,6 +88,23 @@ class CitaDaoTest {
         @Test
         @DisplayName("Debería insertar una cita")
         fun insert() {
+            vehiculoDao.insert(
+                VehiculoEntity(
+                    id = 999,
+                    matricula = "ZZZ999",
+                    marca = "Tesla",
+                    modelo = "Model S",
+                    anio = 2022,
+                    tipo = "motor",
+                    consumo = "8",
+                    neumaticos = true,
+                    bateria = true,
+                    frenos = true,
+                    cilindrada = 10,
+                    capacidad = 22,
+                    aceite = 22
+                )
+            )
 
             dao.insert(cita)
 
@@ -92,6 +117,7 @@ class CitaDaoTest {
                 { assertEquals(cita.hora, getById.hora) }
             )
         }
+
 
         @Test
         @DisplayName("Deberia de borrar el identificador de una cita")

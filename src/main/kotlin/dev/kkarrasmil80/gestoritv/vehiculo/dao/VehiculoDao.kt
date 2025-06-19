@@ -47,9 +47,6 @@ interface VehiculoDao  {
     @GetGeneratedKeys
     fun insert(@BindBean vehiculo: VehiculoEntity): Int
 
-
-
-
     /**
      *
      */

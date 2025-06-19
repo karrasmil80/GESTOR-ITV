@@ -1,6 +1,7 @@
 package vehiculo.validator
 
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoElectrico
+import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoMotor
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoPublico
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoElectricoValidator
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoPublicoValidator
@@ -214,6 +215,72 @@ class VehiculoPublicoValidatorTest {
 
             assertTrue(result.isErr)
             assertEquals("La capacidad no puede ser 0", result.error.message)
+        }
+
+        @Test
+        @DisplayName("El aceite no puede ser menos de 3 Litros")
+        fun neumaticosInvalido() {
+            val vehiculoInvalid = VehiculoPublico(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                neumaticos = false,
+                bateria = true,
+                frenos = true,
+                capacidad = 20,
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("Los neumaticos no han pasado la prueba", result.error.message)
+        }
+
+        @Test
+        @DisplayName("El aceite no puede ser menos de 3 Litros")
+        fun frenosInvalido() {
+            val vehiculoInvalid = VehiculoPublico(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                neumaticos = true,
+                bateria = true,
+                frenos = false,
+                capacidad = 20,
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("Los frenos no han pasado la prueba", result.error.message)
+        }
+
+        @Test
+        @DisplayName("Deberia de no pasar la prueba de los bateria")
+        fun bateriaInvalida() {
+            val vehiculoInvalid = VehiculoPublico(
+                id = 100,
+                matricula = "1234-ZZZ",
+                marca = "Tesla",
+                modelo = "Model S",
+                anio = 2022,
+                tipo = "electrico",
+                neumaticos = true,
+                bateria = false,
+                frenos = true,
+                capacidad = 20
+            )
+
+            val result = validator.validate(vehiculoInvalid)
+
+            assertTrue(result.isErr)
+            assertEquals("La batería no ha pasado la prueba", result.error.message)
         }
     }
 }

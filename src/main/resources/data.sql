@@ -1,6 +1,8 @@
 DELETE FROM vehiculos;
 DELETE FROM citas;
+DELETE FROM cliente;
 
+-- VEHICULOS
 INSERT INTO vehiculos (
     id, matricula, marca, modelo, anio, tipo,
     consumo, cilindrada, capacidad,
@@ -22,9 +24,16 @@ VALUES
      NULL, NULL, 5,
      TRUE, TRUE, TRUE, NULL);
 
-
+-- CITAS
 INSERT INTO citas (id, fechaCita, hora, vehiculoId)
 VALUES
     (1, '2025-06-20', '10:00:00', 1),
     (2, '2025-06-21', '11:30:00', 2),
     (3, '2025-06-22', '09:15:00', 3);
+
+-- CLIENTES
+INSERT INTO Cliente (id, nombre, email, password) VALUES
+    (1, 'Juan', 'pablo@kkarra.com', '123456'),
+    (2, 'Ana',  'ana@kkarra.com', 'abcdef'),
+    (3, 'Luis', 'alicia@kkarra.com', 'pass123');
+

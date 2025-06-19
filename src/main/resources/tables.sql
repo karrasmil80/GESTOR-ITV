@@ -1,6 +1,6 @@
-
-DROP TABLE IF EXISTS vehiculos;
 DROP TABLE IF EXISTS citas;
+DROP TABLE IF EXISTS vehiculos;
+DROP TABLE IF EXISTS cliente;
 
 CREATE TABLE vehiculos (
     id INT PRIMARY KEY,
@@ -24,4 +24,11 @@ CREATE TABLE citas (
     hora TIME NOT NULL,
     vehiculoId INT NOT NULL,
     FOREIGN KEY (vehiculoId) REFERENCES vehiculos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE cliente (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    password VARCHAR(200) NOT NULL
 );

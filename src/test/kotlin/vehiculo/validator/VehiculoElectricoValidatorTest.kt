@@ -224,7 +224,7 @@ class VehiculoElectricoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "",
+                consumo = "15kWh/100km",
                 neumaticos = true,
                 bateria = true,
                 frenos = false
@@ -246,7 +246,7 @@ class VehiculoElectricoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "",
+                consumo = "15kWh/100km",
                 neumaticos = false,
                 bateria = true,
                 frenos = true
@@ -268,7 +268,7 @@ class VehiculoElectricoValidatorTest {
                 modelo = "Model S",
                 anio = 2022,
                 tipo = "electrico",
-                consumo = "",
+                consumo = "15kWh/100km",
                 neumaticos = true,
                 bateria = false,
                 frenos = true
@@ -277,7 +277,7 @@ class VehiculoElectricoValidatorTest {
             val result = validator.validate(vehiculoInvalid)
 
             assertTrue(result.isErr)
-            assertEquals("La bateria no han pasado la prueba", result.error.message)
+            assertEquals("La bateria no ha pasado la prueba", result.error.message)
         }
     }
 }

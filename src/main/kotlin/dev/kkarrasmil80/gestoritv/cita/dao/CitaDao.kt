@@ -5,6 +5,7 @@ import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 import org.jdbi.v3.sqlobject.customizer.Bind
 import org.jdbi.v3.sqlobject.customizer.BindBean
 import org.jdbi.v3.sqlobject.kotlin.RegisterKotlinMapper
+import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys
 import org.jdbi.v3.sqlobject.statement.SqlQuery
 import org.jdbi.v3.sqlobject.statement.SqlUpdate
 
@@ -30,6 +31,7 @@ interface CitaDao {
      */
 
     @SqlUpdate("INSERT INTO citas (id, fechaCita, hora, vehiculoId) VALUES (:id, :fechaCita , :hora, :vehiculoId) ")
+    @GetGeneratedKeys
     fun insert(@BindBean cita: CitaEntity): Int
 
     /**
@@ -45,4 +47,8 @@ interface CitaDao {
 
     @SqlUpdate("DELETE FROM citas")
     fun deleteAll() : Int
+
+    @SqlQuery("SELECT COUNT(*) FROM citas WHERE fechaCita = :fecha AND hora = :hora")
+    fun countByFechaAndHora(@Bind("fecha") fecha: String, @Bind("hora") hora: String): Int
+
 }

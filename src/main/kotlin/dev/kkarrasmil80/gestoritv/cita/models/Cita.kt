@@ -6,9 +6,9 @@ import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
  *
  */
 
-class Cita(
+data class Cita(
     val id : Int,
     val fechaCita : String,
     val hora : String,
-    val vehiculo : Vehiculo
+    val vehiculo : Vehiculo?
 )
