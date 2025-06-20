@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="514.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.kkarrasmil80.gestoritv.view.CitaView">
+   <children>
+      <TableView layoutX="9.0" layoutY="11.0" prefHeight="490.0" prefWidth="303.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="75.0" text="FECHA" />
+            <TableColumn prefWidth="75.0" text="HORA" />
+            <TableColumn prefWidth="75.0" text="VEHICULO" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
