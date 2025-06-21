@@ -50,6 +50,7 @@ object RoutesManager {
             ?: throw RuntimeException("Resource $resource no encontrado")
     }
 
+
     fun initLoginStage(mainStage: Stage) {
         logger.debug { "Iniciando ventana de login" }
         val fxmlLoader = FXMLLoader(getResource(View.LOGIN.fxmlPath))

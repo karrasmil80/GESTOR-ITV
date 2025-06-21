@@ -14,7 +14,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="683.0">
@@ -38,9 +37,9 @@
       </MenuBar>
       <SplitPane layoutY="25.0" prefHeight="446.0" prefWidth="683.0">
          <items>
-            <SplitPane dividerPositions="0.43759177679882527" prefHeight="160.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.434654919236417" prefHeight="160.0" prefWidth="200.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="304.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="316.0">
                      <children>
                         <ComboBox layoutX="137.0" layoutY="14.0" prefHeight="25.0" prefWidth="113.0" />
                         <TextField layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="113.0" promptText="Buscar" />
@@ -53,7 +52,7 @@
                         <ScrollBar layoutX="267.0" layoutY="14.0" orientation="VERTICAL" prefHeight="414.0" prefWidth="14.0" />
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="389.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="350.0">
                      <children>
                         <Button layoutX="22.0" layoutY="392.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Añadir" />
                         <Button layoutX="144.0" layoutY="392.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Editar" />

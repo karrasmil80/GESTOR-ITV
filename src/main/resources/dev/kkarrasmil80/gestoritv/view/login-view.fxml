@@ -8,8 +8,8 @@
 
 <AnchorPane prefHeight="374.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.kkarrasmil80.gestoritv.controllers.LoginController">
    <children>
-      <Button fx:id="iniciarButton" onAction="#onLoginClick" layoutX="171.0" layoutY="281.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" text="Confirmar" />
-      <Button fx:id="cancelarButton" onAction="#cancelarButtonClick" layoutX="311.0" layoutY="281.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="125.0" text="Cancelar" />
+      <Button fx:id="iniciarButton" layoutX="171.0" layoutY="281.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="36.0" prefWidth="115.0" text="Confirmar" />
+      <Button fx:id="cancelarButton" layoutX="311.0" layoutY="281.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="125.0" text="Cancelar" />
       <TextField fx:id="emailField" layoutX="169.0" layoutY="175.0" prefHeight="25.0" prefWidth="263.0" promptText="email" />
       <Label layoutX="206.0" layoutY="33.0" prefHeight="49.0" prefWidth="196.0" text=" ¡Bienvenido a la prueba de la ITV!" />
       <Label layoutX="160.0" layoutY="75.0" prefHeight="49.0" prefWidth="315.0" text="Inicia sesion para poder gestionar y consultar tus citas." />
