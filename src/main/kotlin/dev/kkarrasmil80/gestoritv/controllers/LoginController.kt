@@ -29,6 +29,7 @@ class LoginController {
 
     fun initialize() {
         connection = DriverManager.getConnection("jdbc:h2:mem:itv;DB_CLOSE_DELAY=-1")
+        initEvents()
         val statement = connection.createStatement()
 
         statement.executeUpdate(
@@ -55,21 +56,25 @@ class LoginController {
 
         statement.close()
     }
+
+    fun initEvents(){
+        onLoginClick()
+    }
     fun onLoginClick() {
         iniciarButton.setOnAction {
             val email = emailField.text.trim()
             val password = passwField.text.trim()
 
             if (verificarCredenciales(email, password)) {
-                Alert(Alert.AlertType.INFORMATION, "Inicio de sesión exitoso").show()
                 RoutesManager.initMainViewStage()
+                RoutesManager.escenaPrincipal.close()
             } else {
                 Alert(Alert.AlertType.ERROR, "Credenciales incorrectas").show()
             }
         }
     }
 
-    fun cancelarButtonClick() {
+    fun onCancelarButtonClick() {
         RoutesManager.onAppExit()
     }
 
