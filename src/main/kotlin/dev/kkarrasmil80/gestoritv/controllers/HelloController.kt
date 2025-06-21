@@ -1,4 +1,4 @@
-package dev.kkarrasmil80.gestoritv
+package dev.kkarrasmil80.gestoritv.controllers
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label
