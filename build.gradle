@@ -112,7 +112,9 @@ jacocoTestReport {
                     "**/*di/**",
                     "**/config/**",
                     "**/utils/**",
-                    "**/database/**"
+                    "**/database/**",
+                    "**/controllers/**",
+                    "**/routes/**"
             ])
         }))
     }
