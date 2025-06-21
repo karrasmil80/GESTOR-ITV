@@ -71,7 +71,7 @@ object RoutesManager {
         logger.debug { "Cargando escena new team" }
         val fxmlLoader = FXMLLoader(getResource(View.MAIN.fxmlPath))
         val root = fxmlLoader.load<Pane>()
-        val newScene = Scene(root, 1400.0, 780.0)
+        val newScene = Scene(root, 685.0, 470.0)
 
         val newStage = Stage().apply {
             title = "Gestor principal ITV"
