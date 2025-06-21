@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.kkarrasmil80.gestoritv.view.HelpView">
+   <children>
+      <ImageView fitHeight="146.0" fitWidth="258.0" layoutX="149.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/acercade-logo.png" />
+         </image>
+      </ImageView>
+      <Hyperlink layoutX="278.0" layoutY="314.0" text="Github" />
+      <Label layoutX="98.0" layoutY="50.0" prefHeight="40.0" prefWidth="444.0" text="¡Toda la informacion sobre el programa la tendrás en mi repositorio de github!" />
+   </children>
+</AnchorPane>
