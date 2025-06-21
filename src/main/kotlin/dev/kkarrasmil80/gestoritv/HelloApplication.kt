@@ -1,17 +1,33 @@
 package dev.kkarrasmil80.gestoritv
 
+import dev.kkarrasmil80.gestoritv.di.appModule
+import dev.kkarrasmil80.gestoritv.routes.RoutesManager
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Scene
 import javafx.stage.Stage
+import org.koin.core.component.KoinComponent
+import org.koin.core.context.startKoin
+import org.lighthousegames.logging.logging
 
-class HelloApplication : Application() {
+private val logger = logging()
+class HelloApplication : Application(), KoinComponent {
+
+    init {
+        println("HelloApplication")
+        startKoin {
+            printLogger()
+            modules(appModule)
+        }
+    }
+
     override fun start(stage: Stage) {
-        val fxmlLoader = FXMLLoader(HelloApplication::class.java.getResource("view/hello-view.fxml"))
-        val scene = Scene(fxmlLoader.load(), 320.0, 240.0)
-        stage.title = "Hello!"
-        stage.scene = scene
-        stage.show()
+        logger.debug { "Iniciando Gestor de ITV" }
+        RoutesManager.apply {
+            app = this@HelloApplication
+        }.run {
+            initSplashScreen(stage)
+        }
     }
 }
 
