@@ -26,6 +26,8 @@ module dev.kkarrasmil80.gestoritv {
     //Cache
     requires com.github.benmanes.caffeine;
     requires kotlin.result.jvm;
+    requires java.sql;
+    requires jbcrypt;
 
 
     //App
@@ -41,5 +43,11 @@ module dev.kkarrasmil80.gestoritv {
 
     opens dev.kkarrasmil80.gestoritv.cliente.dao to org.jdbi.v3.core;
     exports dev.kkarrasmil80.gestoritv.cliente.dao to kotlin.reflect;
+
+    //SPLASH SCREEN
+    opens dev.kkarrasmil80.gestoritv.controllers to javafx.fxml;
+    exports dev.kkarrasmil80.gestoritv.controllers to javafx.graphics;
+
+
 
 }
