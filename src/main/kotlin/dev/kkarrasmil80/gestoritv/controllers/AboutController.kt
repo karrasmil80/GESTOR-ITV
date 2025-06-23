@@ -12,7 +12,6 @@ class AboutController {
     @FXML
     lateinit var urlHyperLink: Hyperlink
 
-    // Inicializa el controlador y configura el evento del hyperlink
     fun initialize() {
         urlHyperLink.setOnAction {
             val url = "https://github.com/karrasmil80"
