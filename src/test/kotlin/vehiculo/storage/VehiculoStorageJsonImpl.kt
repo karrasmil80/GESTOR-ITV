@@ -68,6 +68,8 @@ class VehiculoStorageJsonTestImpl {
         @Test
         @DisplayName("Debería escribir en un archivo JSON correctamente")
         fun writeFile() {
+
+            tempFile.parentFile.mkdirs()
             val result = storageJson.writeToFile(tempFile, listOf(vehiculoElectrico, vehiculoMotor, vehiculoPublico))
 
             assertTrue(result.isOk)

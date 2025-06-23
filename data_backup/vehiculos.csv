@@ -1,26 +1,4 @@
 id,matricula,marca,modelo,anio,tipo,consumo,cilindrada,capacidad,neumaticos,bateria,frenos,aceite
-1,1234-ABC,Tesla,Model S,2022,electrico,18 kWh/100km,,,true,true,true,
-2,5678-DEF,Yamaha,MT-07,2020,motor,,689,,true,false,true,3
-3,9012-GHI,Mercedes,Citaro,2018,publico,,,50,true,true,true,
-4,3456-JKL,Nissan,Leaf,2023,electrico,15 kWh/100km,,,true,true,,  ; <- inválido: frenos vacío
-5,7890-MNO,Ford,Transit,2019,publico,,,20,true,true,true,
-6,1122-PQR,Kawasaki,Ninja 400,2021,motor,,399,,true,true,true,4
-7,3344-STU,Renault,ZOE,2021,electrico,17.2 kWh/100km,,,true,false,true,  ; <- inválido: batería falsa
-8,5566-VWX,Ducati,Monster 821,2019,motor,,821,,true,true,false,2  ; <- inválido: frenos falsos
-9,7788-YZA,Scania,Citywide LF,2017,publico,,,70,true,true,true,
-10,9900-BCD,BMW,i3,2020,electrico,13.1 kWh/100km,,,true,true,true,
-11,2468-EEE,Volvo,7900 Electric,2022,publico,,,40,true,true,true,
-12,3579-RRR,Peugeot,e-208,2021,electrico,16.5 kWh/100km,,,true,true,true,
-13,4680-TTT,Suzuki,GSX-R600,2020,motor,,599,,true,true,true,  ; <- inválido: aceite vacío
-14,5791-UUU,Nissan,Ariya,2023,electrico,17.0 kWh/100km,,,true,true,true,
-15,6802-VVV,Iveco,Urbanway,2019,publico,,,0,true,true,true,  ; <- inválido: capacidad 0
-16,7412-WWW,Tesla,Model 3,2021,electrico,14.9 kWh/100km,,,true,true,true,
-17,8523-XXX,Honda,CB650R,2020,motor,,649,,true,true,true,3
-18,9634-YYY,MAN,Lion's City,2018,publico,,, ,true,true,true,  ; <- inválido: capacidad vacía
-19,0745-ZZZ,Renault,Twingo E-Tech,2022,electrico,16.2 kWh/100km,,,true,true,true,
-20,1856-AAA,Yamaha,Tracer 700,2021,motor,,689,,true,true,true,4
-21,2963-BBB,Kia,EV6,2023,electrico,17.5 kWh/100km,,,true,true,true,
-22,4074-CCC,Suzuki,GSX-S750,2019,motor,,749,,true,false,true,3  ; <- inválido: batería falsa
-23,5185-DDD,Iveco,Urbanway,2020,publico,,,60,true,,true,  ; <- inválido: batería vacía
-24,6296-EEE,Hyundai,IONIQ 5,2022,electrico,,, ,true,true,true,  ; <- inválido: consumo vacío
-25,7307-FFF,BMW,F 900 R,2021,motor,,895,,true,true,true,4
+100,1234-ZZZ,Tesla,Model S,2022,electrico,15kWh/100km,,,true,true,true,
+101,1234-ZZC,Mercedes,Citaro,2018,publico,,,50,true,true,true,
+100,1234-ZZZ,Mercedes,Model S,2022,motor,,3,,true,true,true,5
