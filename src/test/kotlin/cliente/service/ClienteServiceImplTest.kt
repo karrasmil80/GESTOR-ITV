@@ -83,7 +83,7 @@ class ClienteServiceImplTest {
 
         @Test
         @DisplayName("Debería devolver dar error cuando la contraseña es incorrecta")
-        fun loginPasswordIncorrect() {
+        fun loginPasswordIncorrecto() {
 
             whenever(repository.findByEmail(cliente.email)).thenReturn(cliente)
 

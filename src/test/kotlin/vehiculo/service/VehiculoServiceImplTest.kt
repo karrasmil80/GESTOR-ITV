@@ -131,7 +131,7 @@ class VehiculoServiceImplTest {
 
         @Test
         @DisplayName("Debería fallar al buscar todos los vehículos si hay error en el repositorio")
-        fun findAllFails() {
+        fun findAllIncorrecto() {
             whenever(repository.findAll()).thenReturn(emptyList())
 
             val result = service.findAll()
@@ -144,7 +144,7 @@ class VehiculoServiceImplTest {
 
         @Test
         @DisplayName("Debería fallar al eliminar un vehículo si el repositorio devuelve 0")
-        fun deleteByIdFails() {
+        fun deleteByIdIncorrecto() {
             whenever(repository.deleteById(vehiculoEntity.id)).thenReturn(0)
 
             val result = service.deleteById(vehiculoEntity.id)
@@ -156,7 +156,7 @@ class VehiculoServiceImplTest {
 
         @Test
         @DisplayName("Debería fallar al eliminar todos los vehículos si el repositorio devuelve 0")
-        fun deleteAllFails() {
+        fun deleteAllIncorrecto() {
             whenever(repository.deleteAll()).thenReturn(0)
 
             val result = service.deleteAll()

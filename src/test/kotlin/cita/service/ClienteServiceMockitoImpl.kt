@@ -163,7 +163,7 @@ class ClienteServiceMockitoImpl {
             val result = service.insert(cita)
 
             assertTrue(result.isErr)
-            assertEquals("Error al validar la cita, no esta bien formada o faltan datos", result.error.message)
+            assertEquals("Error al validar la cita, no está bien formada o faltan datos", result.error.message)
         }
 
         @Test

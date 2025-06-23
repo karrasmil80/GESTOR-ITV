@@ -33,7 +33,8 @@ class LoginController {
     fun initialize() {
         // Crear conexión a base de datos en memoria H2
         connection = DriverManager.getConnection("jdbc:h2:mem:itv;DB_CLOSE_DELAY=-1")
-        // Inicializar los eventos (listeners)
+
+
         initEvents()
 
         // Crear un statement para ejecutar comandos SQL
@@ -62,11 +63,10 @@ class LoginController {
             """.trimIndent()
         )
 
-        // Cerrar statement para liberar recursos
         statement.close()
     }
 
-    // Configura los eventos (listeners) de los botones
+
     fun initEvents(){
         onLoginClick()
     }
@@ -74,8 +74,8 @@ class LoginController {
     // Listener para el botón de iniciar sesión
     fun onLoginClick() {
         iniciarButton.setOnAction {
-            val email = emailField.text.trim()       // Leer email ingresado
-            val password = passwField.text.trim()     // Leer contraseña ingresada
+            val email = emailField.text.trim()
+            val password = passwField.text.trim()
 
             // Verificar credenciales con la base de datos
             if (verificarCredenciales(email, password)) {
@@ -96,22 +96,21 @@ class LoginController {
 
     // Función que valida usuario y contraseña en la base de datos
     private fun verificarCredenciales(email: String, password: String): Boolean {
-        // Preparar consulta para obtener el hash de la contraseña del usuario
         val input: PreparedStatement = connection.prepareStatement(
             "SELECT password FROM cliente WHERE email = ?"
         )
-        input.setString(1, email)  // Setear el email en la consulta
-        val pass = input.executeQuery()  // Ejecutar consulta
+        input.setString(1, email)
+        val pass = input.executeQuery()
 
         // Verificar si existe usuario y comparar hash con la contraseña ingresada
         val esValido = if (pass.next()) {
-            val hash = pass.getString("password") // Obtener hash de DB
-            BCrypt.checkpw(password, hash)        // Comparar hash con pass ingresada
+            val hash = pass.getString("password")
+            BCrypt.checkpw(password, hash)
         } else {
             false // No existe usuario con ese email
         }
 
-        // Cerrar recursos
+
         pass.close()
         input.close()
 

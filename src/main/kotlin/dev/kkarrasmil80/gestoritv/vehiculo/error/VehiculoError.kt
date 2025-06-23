@@ -4,6 +4,7 @@ package dev.kkarrasmil80.gestoritv.vehiculo.error
  * Errores relacionados con operaciones sobre Vehículo.
  */
 sealed class VehiculoError(val message: String) {
+
     // Error general en el servicio de vehículo
     class VehiculoServiceError(message: String) : VehiculoError(message)
 

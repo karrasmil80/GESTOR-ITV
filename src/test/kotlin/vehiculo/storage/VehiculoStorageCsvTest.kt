@@ -100,7 +100,7 @@ class VehiculoStorageCsvTest {
 
         @Test
         @DisplayName("Deberia de leer un archivo inexistente.")
-        fun testReadNonExistentFile() {
+        fun readNoExisteArchivo() {
             val File = File("no_existo.csv")
             val result = storageCsv.readFromFile(File)
 

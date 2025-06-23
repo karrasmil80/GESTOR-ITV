@@ -6,7 +6,7 @@ import dev.kkarrasmil80.gestoritv.routes.RoutesManager
 import dev.kkarrasmil80.gestoritv.vehiculo.error.VehiculoError
 import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoValidator
-import dev.kkarrasmil80.gestoritv.vehiculo.viewModel.VehiculoViewModel
+import dev.kkarrasmil80.gestoritv.vehiculo.viewmodel.VehiculoViewModel
 import javafx.application.Platform
 import javafx.collections.FXCollections
 import javafx.collections.transformation.FilteredList
@@ -19,7 +19,6 @@ import javafx.stage.Stage
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.lighthousegames.logging.logging
-import com.github.michaelbull.result.Result
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoElectrico
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoMotor
@@ -167,9 +166,9 @@ class AppController : KoinComponent {
         } else {
             listaOriginal.filter { vehiculo ->
                 when (filtroSeleccionado) {
-                    "Marca" -> vehiculo.marca.contains(textoBusqueda, ignoreCase = true)
-                    "Modelo" -> vehiculo.modelo.contains(textoBusqueda, ignoreCase = true)
-                    "Tipo" -> vehiculo.tipo.contains(textoBusqueda, ignoreCase = true)
+                    "Marca" -> vehiculo.marca.contains(textoBusqueda)
+                    "Modelo" -> vehiculo.modelo.contains(textoBusqueda)
+                    "Tipo" -> vehiculo.tipo.contains(textoBusqueda)
                     else -> true
                 }
             }
@@ -276,8 +275,7 @@ class AppController : KoinComponent {
                 RoutesManager.escenaActiva.scene.cursor = Cursor.DEFAULT
             }
         } ?: run {
-            // Usuario canceló exportación
-            println("Exportación cancelada por el usuario.")
+            println("Exportación cancelada")
         }
     }
 
@@ -423,7 +421,6 @@ class AppController : KoinComponent {
             append("</body></html>")
         }
 
-        // Mostrar cuadro de diálogo para guardar como PDF o HTML
         val fileChooser = FileChooser().apply {
             title = "Guardar reporte del vehículo"
             extensionFilters.addAll(
@@ -501,10 +498,10 @@ class AppController : KoinComponent {
         val matricula = solicitarInput("Nuevo vehículo", "Matrícula:") ?: return
         val marca = solicitarInput("Nuevo vehículo", "Marca:") ?: return
         val modelo = solicitarInput("Nuevo vehículo", "Modelo:") ?: return
-        val anioStr = solicitarInput("Nuevo vehículo", "Año:") ?: return
+        val anioString = solicitarInput("Nuevo vehículo", "Año:") ?: return
         val tipo = solicitarInput("Nuevo vehículo", "Tipo:") ?: return
 
-        val anio = anioStr.toIntOrNull()
+        val anio = anioString.toIntOrNull()
         if (anio == null) {
             showAlertOperation(Alert.AlertType.ERROR, "Error", "El año debe ser un número válido.")
             return
@@ -531,12 +528,12 @@ class AppController : KoinComponent {
     }
 
     fun solicitarInput(titulo: String, mensaje: String): String? {
-        val dialog = TextInputDialog()
-        dialog.title = titulo
-        dialog.headerText = null
-        dialog.contentText = mensaje
+        val input = TextInputDialog()
+        input.title = titulo
+        input.headerText = null
+        input.contentText = mensaje
 
-        val result = dialog.showAndWait()
+        val result = input.showAndWait()
         return if (result.isPresent) result.get().trim().takeIf { it.isNotEmpty() } else null
     }
 }

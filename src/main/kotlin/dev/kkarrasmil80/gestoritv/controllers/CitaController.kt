@@ -21,28 +21,26 @@ class CitaController : KoinComponent {
 
 
     @FXML
-    private lateinit var citaTableView: TableView<Cita> // Tabla para mostrar citas
+    private lateinit var citaTableView: TableView<Cita>
 
     @FXML
-    private lateinit var idColumn: TableColumn<Cita, String> // Columna para ID
+    private lateinit var idColumn: TableColumn<Cita, String>
 
     @FXML
-    private lateinit var fechaColumn: TableColumn<Cita, String> // Columna para fecha
+    private lateinit var fechaColumn: TableColumn<Cita, String>
 
     @FXML
-    private lateinit var horaColumn: TableColumn<Cita, String> // Columna para hora
+    private lateinit var horaColumn: TableColumn<Cita, String>
+    @FXML
+    private lateinit var vehiculoColumn: TableColumn<Cita, String>
 
     @FXML
-    private lateinit var vehiculoColumn: TableColumn<Cita, String> // Columna para vehículo
+    private lateinit var añadirButton: Button
 
     @FXML
-    private lateinit var añadirButton: Button // Botón para añadir cita
-
+    private lateinit var eliminarButton: Button
     @FXML
-    private lateinit var eliminarButton: Button // Botón para eliminar cita
-
-    @FXML
-    private lateinit var editarButton: Button // Botón para editar cita
+    private lateinit var editarButton: Button
 
     @FXML
     fun initialize() {
@@ -51,14 +49,13 @@ class CitaController : KoinComponent {
         fechaColumn.setCellValueFactory { SimpleStringProperty(it.value.fechaCita) }
         horaColumn.setCellValueFactory { SimpleStringProperty(it.value.hora) }
         vehiculoColumn.setCellValueFactory {
-            // Muestra el vehículo o "Sin vehículo" si es nulo
+
             SimpleStringProperty(it.value.vehiculo?.toString() ?: "Sin vehículo")
         }
 
         // Asignamos la lista observable de citas al TableView
         citaTableView.items = viewModel.state.value.observableCitas
 
-        // Cargar datos iniciales llamando al ViewModel
         viewModel.findAllCitas()
 
         // Configurar eventos para los botones
@@ -90,22 +87,21 @@ class CitaController : KoinComponent {
             frenos = true
         )
 
-        // Creamos la nueva cita con los datos ingresados
+        // Creamos la nueva cita (invntada) con los datos ingresados
         val nuevaCita = Cita(
-            id = 0,  // Id 0 para indicar nueva cita (puede ser autogenerado)
+            id = 0,
             fechaCita = fecha,
             hora = hora,
             vehiculo = vehiculo
         )
 
-        // Guardar la cita usando el ViewModel, manejar éxito y error
         viewModel.saveCita(nuevaCita)
             .onSuccess {
-                mostrarAlerta("Cita creada con id $it") // Mostrar mensaje éxito
-                viewModel.findAllCitas() // Refrescar lista
+                mostrarAlerta("Cita creada con id $it")
+                viewModel.findAllCitas()
             }
             .onFailure {
-                mostrarAlerta("Error creando cita: ${it.message}") // Mostrar error
+                mostrarAlerta("Error creando cita: ${it.message}")
             }
     }
 
@@ -123,14 +119,12 @@ class CitaController : KoinComponent {
         val nuevaHora = solicitarInput("Editar cita", "Hora actual: ${citaSeleccionada.hora}. Nueva hora:", citaSeleccionada.hora) ?: return
         val vehiculo = citaSeleccionada.vehiculo // Conservamos el vehículo
 
-        // Crear nueva instancia con los datos editados
         val citaEditada = citaSeleccionada.copy(
             fechaCita = nuevaFecha,
             hora = nuevaHora,
             vehiculo = vehiculo
         )
 
-        // Guardar cambios vía ViewModel, manejar resultado
         viewModel.saveCita(citaEditada)
             .onSuccess {
                 mostrarAlerta("Cita editada correctamente")
@@ -150,7 +144,6 @@ class CitaController : KoinComponent {
         }
         logger.debug { "Eliminar cita: $citaSeleccionada" }
 
-        // Eliminar cita mediante ViewModel, mostrar resultado
         viewModel.deleteCita(citaSeleccionada)
             .onSuccess {
                 mostrarAlerta("Cita eliminada correctamente")
@@ -161,7 +154,6 @@ class CitaController : KoinComponent {
             }
     }
 
-    // Función para mostrar una alerta con mensaje informativo
     private fun mostrarAlerta(mensaje: String) {
         val alerta = Alert(Alert.AlertType.INFORMATION)
         alerta.title = "Información"

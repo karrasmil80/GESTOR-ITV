@@ -29,7 +29,7 @@ class CitaServiceImpl (
         } ?: Err(CitaError.CitaIdNotFound("No se ha podido encontrar la cita por que no existe el id"))
     }
 
-    // Inserta una nueva cita tras validarla, verificar vehículo y evitar duplicados en fecha y hora
+    // Inserta una nueva cita tras validarla, verifica un vehículo y evita duplicados en fecha y hora
     override fun insert(cita: Cita): Result<Int, CitaError> {
         // Validar cita
         val validador = validador.validate(cita)
@@ -62,7 +62,7 @@ class CitaServiceImpl (
         }
     }
 
-    // Elimina todas las citas y devuelve la cantidad eliminada
+    // Elimina todas las citas y devuelve la cantidad eliminada o un error su no se ha pdido eliminar
     override fun deleteAll(): Result<Int, CitaError> {
         return Ok(repository.deleteAll())
     }

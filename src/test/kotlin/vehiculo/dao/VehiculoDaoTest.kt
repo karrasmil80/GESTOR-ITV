@@ -111,7 +111,7 @@ class VehiculoDaoTest {
 
         @Test
         @DisplayName("Deberia de existir el identificador : 1")
-        fun getById_incorrecto() {
+        fun getByIdIncorrecto() {
 
             val vehiculoGetById = dao.getById(1)
 
@@ -121,7 +121,7 @@ class VehiculoDaoTest {
 
         @Test
         @DisplayName("Deberia de devolver un identificador y no un objeto del tipo Vehiculo")
-        fun insert_incorrecto() {
+        fun insertIncorrecto() {
             val insertVehiculo = dao.insert(vehiculo)
             val getVehiculoId = dao.getById(insertVehiculo)
 
@@ -130,7 +130,7 @@ class VehiculoDaoTest {
 
         @Test
         @DisplayName("Deberia de eliminar una fila, no dos")
-        fun deleteAll_incorrecto() {
+        fun deleteAllIncorrecto() {
             dao.deleteAll()
 
             val insert = dao.insert(vehiculo)

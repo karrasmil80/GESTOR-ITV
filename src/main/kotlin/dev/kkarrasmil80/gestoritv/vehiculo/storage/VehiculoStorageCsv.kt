@@ -17,7 +17,7 @@ class VehiculoStorageCsv : VehiculoStorage {
 
     // Lee vehículos desde un archivo CSV
     override fun readFromFile(file: File): Result<List<Vehiculo>, VehiculoError> {
-        // Validar que el archivo existe, es un fichero y se puede leer
+
         if (!file.exists() || !file.isFile || !file.canRead()) {
             return Err(VehiculoError.VehiculoStorageError("El fichero no existe, no es un fichero válido o no se puede leer."))
         }
@@ -89,7 +89,6 @@ class VehiculoStorageCsv : VehiculoStorage {
                     }
             )
         } catch (e: Exception) {
-            // Captura errores y devuelve error específico
             Err(VehiculoError.VehiculoStorageError("Error al procesar el CSV: ${e.message}"))
         }
     }
@@ -100,11 +99,10 @@ class VehiculoStorageCsv : VehiculoStorage {
 
         val parentFile = file.parentFile
         if (parentFile != null) {
-            // Crear directorio si no existe
             if (!parentFile.exists()) {
                 parentFile.mkdirs()
             }
-            // Validar que el padre es un directorio
+
             if (!parentFile.isDirectory) {
                 logger.error { "El directorio padre no es un directorio: ${parentFile.absolutePath}" }
                 return Err(VehiculoError.VehiculoStorageError("El directorio padre no es válido"))

@@ -1,13 +1,13 @@
 package dev.kkarrasmil80.gestoritv.vehiculo.models
 
 /**
- * Modelo para vehículos de transporte público.
- * Extiende la clase base Vehiculo.
+ * Modelo para vehículos de transporte público
+ * Extiende la claseVehiculo
  *
- * @param capacidad Capacidad máxima de pasajeros.
- * @param neumaticos Estado de los neumáticos.
- * @param bateria Estado de la batería.
- * @param frenos Estado de los frenos.
+ * @param capacidad Capacidad máxima de pasajeros
+ * @param neumaticos Estado de los neumáticos
+ * @param bateria Estado de la batería
+ * @param frenos Estado de los frenos
  */
 class VehiculoPublico(
     id: Int,

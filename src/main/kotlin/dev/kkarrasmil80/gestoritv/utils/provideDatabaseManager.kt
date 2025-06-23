@@ -6,7 +6,7 @@ import org.jdbi.v3.core.Jdbi
 import org.lighthousegames.logging.logging
 
 /**
- * Proporciona una instancia de [Jdbi] configurada para la gestión de la base de datos.
+ * Proporciona una instancia de [Jdbi] para la gestión de la base de datos.
  *
  */
 fun provideDatabaseManager(config: Config): Jdbi {

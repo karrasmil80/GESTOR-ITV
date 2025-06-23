@@ -108,7 +108,7 @@ class VehiculoPublicoValidatorTest {
 
             val result = validator.validate(vehiculoInvalid)
             assertTrue(result.isErr)
-            assertEquals("La matricula debe de seguir el patron especificado", result.error.message)
+            assertEquals("La matrícula debe seguir el patrón especificado", result.error.message)
         }
 
         @Test
@@ -150,7 +150,7 @@ class VehiculoPublicoValidatorTest {
 
             val result = validator.validate(vehiculoInvalid)
             assertTrue(result.isErr)
-            assertEquals("El vehiculo no puede ser mayor a la fecha actual", result.error.message)
+            assertEquals("El vehículo no puede ser mayor a la fecha actual", result.error.message)
         }
 
         @Test
@@ -171,7 +171,7 @@ class VehiculoPublicoValidatorTest {
 
             val result = validator.validate(vehiculoInvalid)
             assertTrue(result.isErr)
-            assertEquals("Marca invalida", result.error.message)
+            assertEquals("Marca inválida", result.error.message)
         }
 
         @Test
@@ -236,7 +236,7 @@ class VehiculoPublicoValidatorTest {
             val result = validator.validate(vehiculoInvalid)
 
             assertTrue(result.isErr)
-            assertEquals("Los neumaticos no han pasado la prueba", result.error.message)
+            assertEquals("Los neumáticos no han pasado la prueba", result.error.message)
         }
 
         @Test

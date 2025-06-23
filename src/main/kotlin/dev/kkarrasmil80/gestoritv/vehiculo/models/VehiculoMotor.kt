@@ -1,14 +1,14 @@
 package dev.kkarrasmil80.gestoritv.vehiculo.models
 
 /**
- * Modelo para vehículos con motor de combustión.
- * Extiende la clase base Vehiculo.
+ * Modelo para vehículos con motor de combustión
+ * Extiende la clase Vehiculo
  *
- * @param cilindrada Cilindrada del motor en cc.
- * @param aceite Nivel o estado del aceite.
- * @param neumaticos Estado de los neumáticos.
- * @param bateria Estado de la batería.
- * @param frenos Estado de los frenos.
+ * @param cilindrada Cilindrada del motor en cc
+ * @param aceite Nivel o estado del aceite
+ * @param neumaticos Estado de los neumáticos
+ * @param bateria Estado de la batería
+ * @param frenos Estado de los frenos
  */
 class VehiculoMotor(
     id: Int,

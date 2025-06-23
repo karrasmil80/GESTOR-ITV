@@ -122,7 +122,9 @@ jacocoTestReport {
                     "**/utils/**",
                     "**/database/**",
                     "**/controllers/**",
-                    "**/routes/**"
+                    "**/routes/**",
+                    "**/viewmodel/**",
+                    "**/dto/**"
             ])
         }))
     }

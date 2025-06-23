@@ -1,4 +1,4 @@
-package dev.kkarrasmil80.gestoritv.vehiculo.viewModel
+package dev.kkarrasmil80.gestoritv.vehiculo.viewmodel
 
 import com.github.michaelbull.result.onSuccess
 import dev.kkarrasmil80.gestoritv.vehiculo.error.VehiculoError
@@ -11,14 +11,13 @@ import org.lighthousegames.logging.logging
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.map
 import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageImpl
-import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageZipImpl
+//import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageZipImpl
 import java.io.File
 
 private val logger = logging()
 
 class VehiculoViewModel(
     private val service: VehiculoServiceImpl,
-    private val storageZip: VehiculoStorageZipImpl,
     private val storage: VehiculoStorageImpl,
 ) {
 
@@ -61,7 +60,7 @@ class VehiculoViewModel(
         state.value.observableVehiculo.setAll(findAll)
     }
 
-    // Guarda un vehículo y actualiza la lista observable en caso de éxito
+    // Guarda un vehículo y actualiza la lista en caso de éxito
     fun saveVehiculo(vehiculo: Vehiculo): Result<Int, VehiculoError> {
         logger.debug { "Guardando nuevo vehículo: $vehiculo" }
         return service.save(vehiculo).onSuccess {
@@ -69,7 +68,7 @@ class VehiculoViewModel(
         }
     }
 
-    // Elimina un vehículo y lo remueve de la lista observable si se elimina con éxito
+    // Elimina un vehículo y lo quita de la lista si se elimina con éxito
     fun deleteVehiculo(vehiculo: Vehiculo): Result<Int, VehiculoError> {
         logger.debug { "Eliminando vehículo de la lista: $vehiculo" }
         val delete = service.deleteById(vehiculo.id).onSuccess {
@@ -78,7 +77,7 @@ class VehiculoViewModel(
         return delete
     }
 
-    // Importa vehículos desde un archivo y refresca la lista del servicio
+    // Importa vehículos desde un archivo y actualiiza la lista del servicio
     fun importFromFile(file: File): Result<List<Vehiculo>, VehiculoError> {
         return storage.readFromFile(file).also {
             service.findAll()
@@ -90,7 +89,7 @@ class VehiculoViewModel(
         return storage.writeToFile(file, vehiculos).map { Unit }
     }
 
-    // Filtra la lista observable por marca, modelo y tipo (filtros opcionales)
+    // Filtra la lista observable por marca, modelo y tipo (filtros opccionales)
     fun filteredListVehiculos(modelo: String, marca: String, tipo: String): List<Vehiculo> {
         logger.debug { "Filtrando vehículos" }
         return state.value.observableVehiculo

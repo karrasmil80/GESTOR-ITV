@@ -13,6 +13,7 @@ import kotlinx.serialization.encodeToString
 import java.io.File
 
 class VehiculoStorageJson : VehiculoStorage {
+
     // Configuración del objeto Json para formateo legible y para ignorar claves desconocidas en JSON
     private val json = Json { prettyPrint = true; ignoreUnknownKeys = true }
 
@@ -26,12 +27,13 @@ class VehiculoStorageJson : VehiculoStorage {
         return try {
             // Leer todo el contenido del archivo como texto
             val content = file.readText()
+
             // Decodificar el contenido JSON a una lista de DTOs de vehículos
             val dto = json.decodeFromString<List<VehiculoDto>>(content)
-            // Convertir cada DTO a modelo Vehiculo y devolver Ok con la lista
+
             Ok(dto.map { it.toModel() })
         } catch (e: Exception) {
-            // En caso de error, devolver Err con mensaje
+
             Err(VehiculoError.VehiculoStorageError("Error al leer JSON: ${e.message}"))
         }
     }
@@ -41,12 +43,12 @@ class VehiculoStorageJson : VehiculoStorage {
         return try {
             // Convertir los modelos Vehiculo a DTOs
             val dto = vehiculos.map { it.toDto() }
-            // Codificar la lista de DTOs a JSON y escribir en el archivo
+
             file.writeText(json.encodeToString(dto))
-            // Devolver Ok con mensaje de éxito
+
             Ok("Vehículos guardados correctamente en ${file.path}")
         } catch (e: Exception) {
-            // En caso de error, devolver Err con mensaje
+
             Err(VehiculoError.VehiculoStorageError("Error al escribir JSON: ${e.message}"))
         }
     }

@@ -15,13 +15,13 @@ import dev.kkarrasmil80.gestoritv.vehiculo.repositories.VehiculoRepositoryImpl
 import dev.kkarrasmil80.gestoritv.vehiculo.service.VehiculoServiceImpl
 import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageCsv
 import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageImpl
-import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageZipImpl
+//import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageZipImpl
 import dev.kkarrasmil80.gestoritv.vehiculo.utils.provideVehiculoDao
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoElectricoValidator
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoMotorValidator
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoPublicoValidator
 import dev.kkarrasmil80.gestoritv.vehiculo.validator.VehiculoValidator
-import dev.kkarrasmil80.gestoritv.vehiculo.viewModel.VehiculoViewModel
+import dev.kkarrasmil80.gestoritv.vehiculo.viewmodel.VehiculoViewModel
 import org.jdbi.v3.core.Jdbi
 import org.koin.dsl.module
 import org.lighthousegames.logging.logging
@@ -102,13 +102,13 @@ val appModule = module {
         println(e)
     }
 
+
     /**
      * Proporciona un singleton del ViewModel de vehículos.
      */
     try {
         single { VehiculoViewModel(
             service = get(),
-            storageZip = get(),
             storage = get()
         ) }
     } catch (e : Exception) {
@@ -122,18 +122,6 @@ val appModule = module {
         single { VehiculoServiceImpl(
             repository = get(),
             cache = get()
-        ) }
-    } catch (e : Exception) {
-        println(e)
-    }
-
-    /**
-     * Proporciona un singleton para el almacenamiento de vehículos en formato zip.
-     */
-    try {
-        single { VehiculoStorageZipImpl(
-            config = get(),
-            storageCsv = get()
         ) }
     } catch (e : Exception) {
         println(e)

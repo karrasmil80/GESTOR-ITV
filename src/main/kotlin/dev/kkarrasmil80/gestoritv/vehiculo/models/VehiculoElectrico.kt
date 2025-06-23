@@ -2,7 +2,7 @@ package dev.kkarrasmil80.gestoritv.vehiculo.models
 
 /**
  * Modelo para vehículos eléctricos.
- * Extiende de la clase base Vehiculo.
+ * Extiende de la clase Vehiculo.
  *
  * @param consumo Consumo energético del vehículo.
  * @param neumaticos Estado de los neumáticos (true si están bien).
