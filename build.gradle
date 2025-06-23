@@ -159,5 +159,14 @@ task testCoverage(group: 'verification', description: 'Runs the unit tests with 
 }
 
 jar {
+    manifest {
+        attributes 'Main-Class': 'dev.kkarrasmil80.gestoritv.HelloApplication'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    archiveFileName = 'gestor-itv.jar'
 }
