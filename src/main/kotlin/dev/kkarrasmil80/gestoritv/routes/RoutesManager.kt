@@ -47,10 +47,6 @@ object RoutesManager {
         MAIN("view/main-view.fxml"),
         SPLASH("view/splash-screen.fxml"),
         HELP("view/help-view.fxml"),
-        ELECCION("view/eleccion-view.fxml"),
-        MOTOR("view/motor-view.fxml"),
-        PUBLICO("view/publico-view.fxml"),
-        ELECTRICO("view/electrico-view.fxml"),
     }
 
     init {
