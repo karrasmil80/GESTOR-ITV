@@ -5,14 +5,14 @@ import dev.kkarrasmil80.gestoritv.vehiculo.error.VehiculoError
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoElectrico
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoMotor
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoPublico
-import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageCsvImpl
+import dev.kkarrasmil80.gestoritv.vehiculo.storage.VehiculoStorageCsv
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.io.File
-class VehiculoStorageCsvImplTest {
+class VehiculoStorageCsvTest {
 
     private val vehiculoElectrico = VehiculoElectrico(
         id = 100,
@@ -56,7 +56,7 @@ class VehiculoStorageCsvImplTest {
 
     private val tempFile = File("data_backup/vehiculos.csv")
 
-    private val storageCsv = VehiculoStorageCsvImpl()
+    private val storageCsv = VehiculoStorageCsv()
 
     @Nested
     @DisplayName("Casos correctos")

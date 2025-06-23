@@ -19,19 +19,27 @@ class LoginController {
     @FXML
     lateinit var emailField: TextField
 
+
     @FXML
     lateinit var iniciarButton: Button
 
     @FXML
     lateinit var cancelarButton: Button
 
+    // Conexión a la base de datos
     private lateinit var connection: Connection
 
+    // Método que se ejecuta al inicializar el controlador
     fun initialize() {
+        // Crear conexión a base de datos en memoria H2
         connection = DriverManager.getConnection("jdbc:h2:mem:itv;DB_CLOSE_DELAY=-1")
+        // Inicializar los eventos (listeners)
         initEvents()
+
+        // Crear un statement para ejecutar comandos SQL
         val statement = connection.createStatement()
 
+        // Crear tabla 'cliente' si no existe con columnas id, nombre, email y password
         statement.executeUpdate(
             """
             CREATE TABLE IF NOT EXISTS cliente (
@@ -43,7 +51,7 @@ class LoginController {
             """.trimIndent()
         )
 
-        // Inserta usuario dummy con contraseña hasheada (una sola vez)
+        // Insertar un usuario de prueba con contraseña encriptada
         statement.executeUpdate(
             """
             INSERT INTO cliente (nombre, email, password) VALUES (
@@ -54,44 +62,56 @@ class LoginController {
             """.trimIndent()
         )
 
+        // Cerrar statement para liberar recursos
         statement.close()
     }
 
+    // Configura los eventos (listeners) de los botones
     fun initEvents(){
         onLoginClick()
     }
+
+    // Listener para el botón de iniciar sesión
     fun onLoginClick() {
         iniciarButton.setOnAction {
-            val email = emailField.text.trim()
-            val password = passwField.text.trim()
+            val email = emailField.text.trim()       // Leer email ingresado
+            val password = passwField.text.trim()     // Leer contraseña ingresada
 
+            // Verificar credenciales con la base de datos
             if (verificarCredenciales(email, password)) {
+                // Si es válido, abrir ventana principal y cerrar la actual
                 RoutesManager.initMainViewStage()
                 RoutesManager.escenaPrincipal.close()
             } else {
+                // Si no, mostrar alerta de error
                 Alert(Alert.AlertType.ERROR, "Credenciales incorrectas").show()
             }
         }
     }
 
+    // Método para el botón cancelar (cerrar app)
     fun onCancelarButtonClick() {
         RoutesManager.onAppExit()
     }
 
+    // Función que valida usuario y contraseña en la base de datos
     private fun verificarCredenciales(email: String, password: String): Boolean {
+        // Preparar consulta para obtener el hash de la contraseña del usuario
         val input: PreparedStatement = connection.prepareStatement(
             "SELECT password FROM cliente WHERE email = ?"
         )
-        input.setString(1, email)
-        val pass = input.executeQuery()
+        input.setString(1, email)  // Setear el email en la consulta
+        val pass = input.executeQuery()  // Ejecutar consulta
 
+        // Verificar si existe usuario y comparar hash con la contraseña ingresada
         val esValido = if (pass.next()) {
-            val hash = pass.getString("password")
-            BCrypt.checkpw(password, hash)
+            val hash = pass.getString("password") // Obtener hash de DB
+            BCrypt.checkpw(password, hash)        // Comparar hash con pass ingresada
         } else {
-            false
+            false // No existe usuario con ese email
         }
 
+        // Cerrar recursos
         pass.close()
         input.close()
 

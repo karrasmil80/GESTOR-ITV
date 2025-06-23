@@ -16,44 +16,53 @@ class CitaServiceImpl (
     private val repositoryVehiculo : VehiculoRepositoryImpl,
     private val validador: CitaValidator
 ) : CitaService {
+
+    // Obtiene todas las citas sin filtro
     override fun getAll(): Result<List<Cita>, CitaError> {
-       return Ok(repository.getAll())
+        return Ok(repository.getAll())
     }
 
-
+    // Obtiene una cita por id, o error si no existe
     override fun getById(id: Int): Result<Cita, CitaError> {
         return repository.getById(id)?.let {
             Ok(it)
         } ?: Err(CitaError.CitaIdNotFound("No se ha podido encontrar la cita por que no existe el id"))
     }
 
-
-    override fun insert(cita: Cita): Result<Cita, CitaError> {
+    // Inserta una nueva cita tras validarla, verificar vehículo y evitar duplicados en fecha y hora
+    override fun insert(cita: Cita): Result<Int, CitaError> {
+        // Validar cita
         val validador = validador.validate(cita)
         if (validador.isErr) {
-            return Err(CitaError.CitaValidatorError("Error al validar la cita, no esta bien formada o faltan datos"))
+            return Err(CitaError.CitaValidatorError("Error al validar la cita, no está bien formada o faltan datos"))
         }
-        val vehiculo = repositoryVehiculo.save(cita.vehiculo!!)?.let {
-            Ok(it)
-        } ?: Err(CitaError.CitaServiceError("El vehiculo no existe en la base de datos"))
+
+        val vehiculo = cita.vehiculo ?: return Err(CitaError.CitaServiceError("El vehículo no puede ser nulo"))
+
+        val resultadoVehiculo = repositoryVehiculo.save(vehiculo)
+        if (resultadoVehiculo == null) {
+            return Err(CitaError.CitaServiceError("El vehículo no existe en la base de datos"))
+        }
 
         if (repository.fechaYHoraCita(cita.hora, cita.fechaCita)) {
             return Err(CitaError.CitaServiceError("Ya existe una cita a esa hora"))
         }
 
         val id = repository.insert(cita)
-        return Ok(cita.copy(id = id))
+        return Ok(id)
     }
 
-    override fun deleteById(id: Int): Result<Unit, CitaError> {
+    // Elimina una cita por id, devuelve error si no se encuentra
+    override fun deleteById(id: Int): Result<Int, CitaError> {
         val filasAfectadas = repository.deleteById(id)
         if (filasAfectadas > 0) {
-            return Ok(Unit)
+            return Ok(filasAfectadas)
         } else {
             return Err(CitaError.CitaServiceError("No se ha podido encontrar la cita"))
         }
     }
 
+    // Elimina todas las citas y devuelve la cantidad eliminada
     override fun deleteAll(): Result<Int, CitaError> {
         return Ok(repository.deleteAll())
     }

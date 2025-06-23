@@ -8,7 +8,6 @@ module dev.kkarrasmil80.gestoritv {
 
     //Kotlin
     requires kotlin.reflect;
-    requires kotlin.stdlib;
 
     //Logger
     requires logging.jvm;
@@ -29,6 +28,12 @@ module dev.kkarrasmil80.gestoritv {
     requires java.sql;
     requires jbcrypt;
 
+    requires transitive io.leangen.geantyref;
+    requires kotlinx.serialization.json;
+    requires java.desktop;
+    requires openhtmltopdf.pdfbox;
+    requires open;
+
 
     //App
     opens dev.kkarrasmil80.gestoritv to javafx.fxml;
@@ -47,6 +52,10 @@ module dev.kkarrasmil80.gestoritv {
     //SPLASH SCREEN
     opens dev.kkarrasmil80.gestoritv.controllers to javafx.fxml;
     exports dev.kkarrasmil80.gestoritv.controllers to javafx.graphics;
+
+    //MODELS
+    opens dev.kkarrasmil80.gestoritv.vehiculo.models to javafx.base;
+
 
 
 

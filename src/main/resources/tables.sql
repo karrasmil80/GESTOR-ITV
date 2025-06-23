@@ -20,8 +20,8 @@ CREATE TABLE vehiculos (
 
 CREATE TABLE citas (
     id INT PRIMARY KEY,
-    fechaCita DATE NOT NULL,
-    hora TIME NOT NULL,
+    fechaCita VARCHAR(200) NOT NULL,
+    hora VARCHAR(200) NOT NULL,
     vehiculoId INT NOT NULL,
     FOREIGN KEY (vehiculoId) REFERENCES vehiculos(id) ON DELETE CASCADE
 );

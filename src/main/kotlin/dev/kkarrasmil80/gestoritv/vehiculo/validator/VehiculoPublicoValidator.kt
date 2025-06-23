@@ -4,54 +4,44 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import dev.kkarrasmil80.gestoritv.vehiculo.error.VehiculoError
-import dev.kkarrasmil80.gestoritv.vehiculo.models.Vehiculo
 import dev.kkarrasmil80.gestoritv.vehiculo.models.VehiculoPublico
 
+// Validador para VehiculoPublico que verifica sus campos obligatorios y específicos
 class VehiculoPublicoValidator : Validator<VehiculoPublico, VehiculoError> {
+
     override fun validate(t: VehiculoPublico): Result<VehiculoPublico, VehiculoError> {
-        if (t.id <= 0) {
+        if (t.id <= 0)
             return Err(VehiculoError.VehiculoValidatorError("ID inválido"))
-        }
 
-        if (t.matricula.isBlank()) {
+        if (t.matricula.isBlank())
             return Err(VehiculoError.VehiculoValidatorError("Matrícula inválida"))
-        }
 
-        if (!t.matricula.matches(Regex("[0-9]{4}-[A-Z]{3}"))){
-            return Err(VehiculoError.VehiculoValidatorError("La matricula debe de seguir el patron especificado"))
-        }
+        if (!t.matricula.matches(Regex("[0-9]{4}-[A-Z]{3}")))
+            return Err(VehiculoError.VehiculoValidatorError("La matrícula debe seguir el patrón especificado"))
 
-        if (t.modelo.isBlank()) {
+        if (t.modelo.isBlank())
             return Err(VehiculoError.VehiculoValidatorError("Modelo inválido"))
-        }
 
-        if (t.anio > 2025) {
-            return Err(VehiculoError.VehiculoValidatorError("El vehiculo no puede ser mayor a la fecha actual"))
-        }
+        if (t.anio > 2025)
+            return Err(VehiculoError.VehiculoValidatorError("El vehículo no puede ser mayor a la fecha actual"))
 
-        if (t.marca.isBlank()) {
-            return Err(VehiculoError.VehiculoValidatorError("Marca invalida"))
-        }
+        if (t.marca.isBlank())
+            return Err(VehiculoError.VehiculoValidatorError("Marca inválida"))
 
-        if (t.tipo.isBlank()) {
+        if (t.tipo.isBlank())
             return Err(VehiculoError.VehiculoValidatorError("El tipo no puede estar en blanco"))
-        }
 
-        if (t.capacidad == 0) {
+        if (t.capacidad == 0)
             return Err(VehiculoError.VehiculoValidatorError("La capacidad no puede ser 0"))
-        }
 
-        if (t.frenos == false) {
+        if (!t.frenos)
             return Err(VehiculoError.VehiculoValidatorError("Los frenos no han pasado la prueba"))
-        }
 
-        if (t.bateria == false) {
+        if (!t.bateria)
             return Err(VehiculoError.VehiculoValidatorError("La batería no ha pasado la prueba"))
-        }
 
-        if (t.neumaticos == false) {
-            return Err(VehiculoError.VehiculoValidatorError("Los neumaticos no han pasado la prueba"))
-        }
+        if (!t.neumaticos)
+            return Err(VehiculoError.VehiculoValidatorError("Los neumáticos no han pasado la prueba"))
 
         return Ok(t)
     }

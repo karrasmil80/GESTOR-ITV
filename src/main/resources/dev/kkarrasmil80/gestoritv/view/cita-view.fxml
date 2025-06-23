@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="514.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.kkarrasmil80.gestoritv.view.CitaView">
+<AnchorPane prefHeight="590.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.kkarrasmil80.gestoritv.controllers.CitaController">
    <children>
-      <TableView layoutX="9.0" layoutY="11.0" prefHeight="490.0" prefWidth="303.0">
+      <TableView fx:id="citaTableView" layoutX="9.0" layoutY="11.0" prefHeight="490.0" prefWidth="303.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="FECHA" />
-            <TableColumn prefWidth="75.0" text="HORA" />
-            <TableColumn prefWidth="75.0" text="VEHICULO" />
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="fechaColumn" prefWidth="75.0" text="FECHA" />
+            <TableColumn fx:id="horaColumn" prefWidth="75.0" text="HORA" />
+            <TableColumn fx:id="vehiculoColumn" prefWidth="75.0" text="VEHICULO" />
         </columns>
       </TableView>
+      <Button fx:id="añadirButton" layoutX="14.0" layoutY="529.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Añadir" />
+      <Button fx:id="eliminarButton" layoutX="222.0" layoutY="529.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Eliminar" />
+      <Button fx:id="editarButton" layoutX="116.0" layoutY="529.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Editar" />
    </children>
 </AnchorPane>

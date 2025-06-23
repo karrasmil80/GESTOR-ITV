@@ -1,9 +1,10 @@
-package dev.kkarrasmil80.gestoritv.vehiculo.dao
+package dev.kkarrasmil80.gestoritv.vehiculo.dto
 
-/**
- * Representa la entidad Vehiculo para el dao.
- */
-data class VehiculoEntity(
+import kotlinx.serialization.Serializable
+
+//DTO para poder serializar el JSON
+@Serializable
+class VehiculoDto(
     val id: Int,
     val matricula: String,
     val marca: String,
@@ -17,4 +18,7 @@ data class VehiculoEntity(
     val bateria: Boolean,
     val frenos: Boolean,
     val aceite: Int?
-)
+) {
+
+
+}

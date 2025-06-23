@@ -5,6 +5,7 @@ import dev.kkarrasmil80.gestoritv.vehiculo.dao.VehiculoDao
 import org.jdbi.v3.core.Jdbi
 import org.lighthousegames.logging.logging
 
+// Proporciona una instancia de CitaDao
 fun provideCitaDao(jdbi: Jdbi): CitaDao {
     val logger = logging()
     logger.debug { "Inicializando CitaDao" }

@@ -10,9 +10,11 @@ import dev.kkarrasmil80.gestoritv.cliente.repositories.ClienteRepositoryImpl
 import dev.kkarrasmil80.gestoritv.cliente.validator.ClienteValidator
 
 class ClienteServiceImpl(
-    private val repository : ClienteRepositoryImpl,
-    private val validator : ClienteValidator
+    private val repository: ClienteRepositoryImpl,
+    private val validator: ClienteValidator
 ) : ClienteService {
+
+    // Valida el login comparando email y password, devuelve Cliente o error
     override fun loginOk(email: String, password: String): Result<Cliente, ClienteError> {
         val cliente = repository.findByEmail(email)
             ?: return Err(ClienteError.ClienteServiceError("El email no existe"))
@@ -24,6 +26,7 @@ class ClienteServiceImpl(
         }
     }
 
+    // Busca un cliente por email, devuelve Cliente o error si no existe
     override fun findByEmail(email: String): Result<Cliente, ClienteError> {
         return repository.findByEmail(email)?.let {
             Ok(it)

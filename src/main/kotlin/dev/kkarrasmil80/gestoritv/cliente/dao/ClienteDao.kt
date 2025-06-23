@@ -9,9 +9,11 @@ import java.util.*
 @RegisterKotlinMapper(ClienteEntity::class)
 interface ClienteDao {
 
+    // Busca un cliente por su email
     @SqlQuery("SELECT * FROM cliente WHERE email = :email")
-    fun findByEmail(@Bind("email")email: String): ClienteEntity?
+    fun findByEmail(@Bind("email") email: String): ClienteEntity?
 
+    // Verifica login con email y contraseña
     @SqlQuery("SELECT * FROM cliente WHERE email = :email AND password = :password")
-    fun loginOk(@Bind("email") email: String, @Bind("password") password: String) : ClienteEntity?
+    fun loginOk(@Bind("email") email: String, @Bind("password") password: String): ClienteEntity?
 }

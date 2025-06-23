@@ -1,9 +1,14 @@
 package dev.kkarrasmil80.gestoritv.vehiculo.models
 
 /**
+ * Modelo para vehículos eléctricos.
+ * Extiende de la clase base Vehiculo.
  *
+ * @param consumo Consumo energético del vehículo.
+ * @param neumaticos Estado de los neumáticos (true si están bien).
+ * @param bateria Estado de la batería (true si está bien).
+ * @param frenos Estado de los frenos (true si están bien).
  */
-
 class VehiculoElectrico(
     id: Int,
     matricula: String,

@@ -9,6 +9,7 @@ import dev.kkarrasmil80.gestoritv.cita.models.Cita
 import dev.kkarrasmil80.gestoritv.vehiculo.error.VehiculoError
 
 class CitaValidator : ValidatorCita<Cita, CitaError> {
+    // Valida que la cita tenga vehículo, fecha y hora no vacíos
     override fun validate(t: Cita): Result<Cita, CitaError> {
         if (t.vehiculo == null) {
             return Err(CitaError.CitaValidatorError("El vehiculo no puede ser nulo"))
@@ -24,5 +25,4 @@ class CitaValidator : ValidatorCita<Cita, CitaError> {
 
         return Ok(t)
     }
-
 }

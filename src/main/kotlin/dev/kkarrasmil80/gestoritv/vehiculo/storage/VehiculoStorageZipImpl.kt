@@ -16,20 +16,26 @@ import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
 private val logger = logging()
+
 class VehiculoStorageZipImpl(
     private val config: Config,
-    private val storageCsv : VehiculoStorageCsvImpl
+    private val storageCsv: VehiculoStorageCsv
 ) : VehiculoStorageZip {
 
     private val tempDirName = "vehiculos"
+
+    /**
+     * Exporta una lista de vehículos a un archivo ZIP.
+     * al directorio temporal antes de comprimir todo.
+     */
     override fun exportToZip(fileToZip: File, data: List<Vehiculo>): Result<File, VehiculoError> {
         logger.debug { "Exportando a ZIP $fileToZip" }
         val tempDir = Files.createTempDirectory(tempDirName)
         return try {
-
-            data.forEach {
-                val file = File(config.imagesDirectory)
-                if (file.exists()) {
+            // Copiar imágenes desde el directorio configurado al directorio temporal
+            val imagesDir = File(config.imagesDirectory)
+            if (imagesDir.exists() && imagesDir.isDirectory) {
+                imagesDir.listFiles()?.forEach { file ->
                     Files.copy(
                         file.toPath(),
                         Paths.get(tempDir.toString(), file.name),
@@ -37,9 +43,13 @@ class VehiculoStorageZipImpl(
                     )
                 }
             }
-            storageCsv.writeToFile(File("$tempDir/data.json"), data)
-            // Listamos por consola el contenido del directorio temporal
+
+            // Guardar los datos CSV/JSON en el directorio temporal
+            storageCsv.writeToFile(File(tempDir.toFile(), "data.json"), data)
+
             Files.walk(tempDir).forEach { logger.debug { it } }
+
+            // Crear archivo ZIP con los archivos del directorio temporal
             val archivos = Files.walk(tempDir)
                 .filter { Files.isRegularFile(it) }
                 .toList()
@@ -51,7 +61,9 @@ class VehiculoStorageZipImpl(
                     zip.closeEntry()
                 }
             }
+            // Limpiar directorio temporal
             tempDir.toFile().deleteRecursively()
+
             Ok(fileToZip)
         } catch (e: Exception) {
             logger.error { "Error al exportar a ZIP: ${e.message}" }
@@ -59,6 +71,11 @@ class VehiculoStorageZipImpl(
         }
     }
 
+    /**
+     * Importa vehículos desde un archivo ZIP.
+     * Extrae los archivos en un directorio temporal, copia las imágenes a la carpeta configurada
+     * y lee los datos JSON para reconstruir la lista de vehículos.
+     */
     override fun loadFromZip(fileToUnzip: File): Result<List<Vehiculo>, VehiculoError> {
         logger.debug { "Importando desde ZIP $fileToUnzip" }
         val tempDir = Files.createTempDirectory(tempDirName)
@@ -74,19 +91,26 @@ class VehiculoStorageZipImpl(
                     }
                 }
             }
+
+            // Copiar archivos que no sean JSON (imágenes) al directorio configurado
             Files.walk(tempDir).forEach {
-                // copiamos todas las imagenes, es decir, todo lo que no es .json al directorio de imagenes
                 if (!it.toString().endsWith(".json") && Files.isRegularFile(it)) {
+                    val destino = Paths.get(config.imagesDirectory, it.fileName.toString())
                     Files.copy(
                         it,
-                        Paths.get(config.imagesDirectory),
+                        destino,
                         StandardCopyOption.REPLACE_EXISTING
                     )
                 }
             }
-            val data = storageCsv.readFromFile(File("$tempDir/data.json"))
+
+            // Leer datos JSON con los vehículos
+            val data = storageCsv.readFromFile(File(tempDir.toFile(), "data.json"))
+
+            // Eliminar directorio temporal
             tempDir.toFile().deleteRecursively()
-            return data
+
+            data
         } catch (e: Exception) {
             logger.error { "Error al importar desde ZIP: ${e.message}" }
             Err(VehiculoError.VehiculoStorageError("Error al importar desde ZIP: ${e.message}"))

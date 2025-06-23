@@ -33,7 +33,7 @@ VALUES
 
 -- CLIENTES
 INSERT INTO Cliente (id, nombre, email, password) VALUES
-    (1, 'Juan', 'pablo@kkarra.com', '123456'),
+    (1, 'Pablo', 'pablo@kkarra.com', '123456'),
     (2, 'Ana',  'ana@kkarra.com', 'abcdef'),
     (3, 'Luis', 'alicia@kkarra.com', 'pass123');
 
